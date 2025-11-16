@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>RPG/MMO Editor + Runner (Tileset & Realtime)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>RPG/MMO Editor</h1>
+    <div class="topbar-buttons">
+      <button class="tab-button active" data-tab="editor">Editor</button>
+      <button class="tab-button" data-tab="game">Gioco (Run)</button>
+
+      <button id="exportJsonBtn">Esporta JSON</button>
+      <label class="file-label">
+        Importa JSON
+        <input type="file" id="importJsonInput" accept="application/json">
+      </label>
+    </div>
+  </header>
+
+  <main>
+    <!-- TAB: EDITOR -->
+    <section class="view" id="view-editor">
+      <div class="editor-layout">
+        <nav class="editor-nav">
+          <button class="section-button active" data-section="items">Oggetti</button>
+          <button class="section-button" data-section="mobs">Mostri (Mob)</button>
+          <button class="section-button" data-section="levels">Livelli</button>
+          <button class="section-button" data-section="resources">Risorse / Edifici</button>
+          <button class="section-button" data-section="map">Mappa</button>
+        </nav>
+
+        <div class="editor-content">
+          <!-- SEZIONE OGGETTI -->
+          <div class="section" id="section-items">
+            <h2>Oggetti</h2>
+            <form id="itemForm" autocomplete="off">
+              <div class="form-row">
+                <label>ID</label>
+                <input type="text" id="itemId" required placeholder="es. sword_001">
+              </div>
+              <div class="form-row">
+                <label>Nome</label>
+                <input type="text" id="itemName" required placeholder="Spada di Ferro">
+              </div>
+              <div class="form-row">
+                <label>Tipo</label>
+                <select id="itemType">
+                  <option value="weapon">Arma</option>
+                  <option value="armor">Armatura</option>
+                  <option value="accessory">Accessorio</option>
+                  <option value="consumable">Consumabile</option>
+                  <option value="material">Materiale</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label>Slot</label>
+                <select id="itemSlot">
+                  <option value="none">Nessuno</option>
+                  <option value="weapon">Mano</option>
+                  <option value="armor">Corpo</option>
+                  <option value="ring">Anello</option>
+                  <option value="amulet">Amuleto</option>
+                </select>
+              </div>
+              <div class="form-row grid-3">
+                <div>
+                  <label>ATK +</label>
+                  <input type="number" id="itemAtk" value="0">
+                </div>
+                <div>
+                  <label>DEF +</label>
+                  <input type="number" id="itemDef" value="0">
+                </div>
+                <div>
+                  <label>HP +</label>
+                  <input type="number" id="itemHp" value="0">
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" id="itemSaveBtn">Aggiungi / Aggiorna</button>
+                <button type="button" id="itemResetBtn">Nuovo</button>
+              </div>
+            </form>
+
+            <h3>Lista oggetti</h3>
+            <ul id="itemList" class="card-list"></ul>
+          </div>
+
+          <!-- SEZIONE MOB -->
+          <div class="section hidden" id="section-mobs">
+            <h2>Mob / Mostri</h2>
+            <form id="mobForm" autocomplete="off">
+              <div class="form-row">
+                <label>ID</label>
+                <input type="text" id="mobId" required placeholder="es. wolf_001">
+              </div>
+              <div class="form-row">
+                <label>Nome</label>
+                <input type="text" id="mobName" required placeholder="Lupo">
+              </div>
+              <div class="form-row grid-4">
+                <div>
+                  <label>Livello</label>
+                  <input type="number" id="mobLevel" value="1" min="1">
+                </div>
+                <div>
+                  <label>HP</label>
+                  <input type="number" id="mobHp" value="50" min="1">
+                </div>
+                <div>
+                  <label>ATK</label>
+                  <input type="number" id="mobAtk" value="5">
+                </div>
+                <div>
+                  <label>DEF</label>
+                  <input type="number" id="mobDef" value="1">
+                </div>
+              </div>
+              <div class="form-row">
+                <label>XP ricompensa</label>
+                <input type="number" id="mobXp" value="10" min="0">
+              </div>
+
+              <div class="form-row">
+                <label>Drop multipli</label>
+                <div class="grid-4">
+                  <div>
+                    <label>Oggetto</label>
+                    <select id="mobDropItem"></select>
+                  </div>
+                  <div>
+                    <label>Probabilità %</label>
+                    <input type="number" id="mobDropChance" value="50" min="0" max="100">
+                  </div>
+                  <div>
+                    <label>Quantità min</label>
+                    <input type="number" id="mobDropMinQty" value="1" min="1">
+                  </div>
+                  <div>
+                    <label>Quantità max</label>
+                    <input type="number" id="mobDropMaxQty" value="1" min="1">
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button type="button" id="mobAddDropBtn">Aggiungi drop</button>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" id="mobSaveBtn">Aggiungi / Aggiorna mob</button>
+                <button type="button" id="mobResetBtn">Nuovo</button>
+              </div>
+            </form>
+
+            <h3>Lista drop del mob selezionato</h3>
+            <ul id="mobDropList" class="card-list small"></ul>
+
+            <h3>Lista mob</h3>
+            <ul id="mobList" class="card-list"></ul>
+          </div>
+
+          <!-- SEZIONE LIVELLI -->
+          <div class="section hidden" id="section-levels">
+            <h2>Tabella livelli</h2>
+            <form id="levelForm" autocomplete="off">
+              <div class="form-row grid-4">
+                <div>
+                  <label>Livello</label>
+                  <input type="number" id="levelLevel" value="1" min="1">
+                </div>
+                <div>
+                  <label>XP per salire</label>
+                  <input type="number" id="levelXp" value="50" min="0">
+                </div>
+                <div>
+                  <label>ATK per questo livello</label>
+                  <input type="number" id="levelAtk" value="2">
+                </div>
+                <div>
+                  <label>DEF per questo livello</label>
+                  <input type="number" id="levelDef" value="1">
+                </div>
+              </div>
+              <div class="form-row">
+                <label>HP per questo livello</label>
+                <input type="number" id="levelHp" value="10">
+              </div>
+              <div class="form-actions">
+                <button type="submit" id="levelSaveBtn">Aggiungi / Aggiorna livello</button>
+                <button type="button" id="levelResetBtn">Nuovo</button>
+              </div>
+              <p class="hint">
+                Il livello 1 usa le statistiche base del giocatore. I livelli successivi aggiungono ATK/DEF/HP cumulativi.
+              </p>
+            </form>
+
+            <h3>Livelli definiti</h3>
+            <ul id="levelList" class="card-list"></ul>
+          </div>
+
+          <!-- SEZIONE RISORSE / EDIFICI -->
+          <div class="section hidden" id="section-resources">
+            <h2>Risorse ed edifici produttivi</h2>
+            <div class="resources-layout">
+              <div class="resources-column">
+                <h3>Tipi di risorse</h3>
+                <form id="resourceForm" autocomplete="off">
+                  <div class="form-row">
+                    <label>ID risorsa</label>
+                    <input type="text" id="resourceId" placeholder="es. wood">
+                  </div>
+                  <div class="form-row">
+                    <label>Nome risorsa</label>
+                    <input type="text" id="resourceName" placeholder="Legno">
+                  </div>
+                  <div class="form-actions">
+                    <button type="submit" id="resourceSaveBtn">Aggiungi / Aggiorna</button>
+                    <button type="button" id="resourceResetBtn">Nuovo</button>
+                  </div>
+                </form>
+                <ul id="resourceListEditor" class="card-list small"></ul>
+              </div>
+
+              <div class="resources-column">
+                <h3>Tipi di edifici</h3>
+                <form id="buildingForm" autocomplete="off">
+                  <div class="form-row">
+                    <label>ID edificio</label>
+                    <input type="text" id="buildingId" placeholder="es. mine_iron">
+                  </div>
+                  <div class="form-row">
+                    <label>Nome edificio</label>
+                    <input type="text" id="buildingName" placeholder="Miniera di Ferro">
+                  </div>
+                  <div class="form-row grid-2">
+                    <div>
+                      <label>Risorsa prodotta</label>
+                      <select id="buildingResourceSelect"></select>
+                    </div>
+                    <div>
+                      <label>Quantità al minuto (livello 1)</label>
+                      <input type="number" id="buildingRate" value="30" min="0">
+                    </div>
+                  </div>
+                  <div class="form-row grid-2">
+                    <div>
+                      <label>Risorsa per upgrade</label>
+                      <select id="buildingCostResourceSelect"></select>
+                    </div>
+                    <div>
+                      <label>Livello massimo</label>
+                      <input type="number" id="buildingMaxLevel" value="5" min="1">
+                    </div>
+                  </div>
+                  <div class="form-row grid-2">
+                    <div>
+                      <label>Costo base upgrade (livello 1)</label>
+                      <input type="number" id="buildingBaseCost" value="50" min="0">
+                    </div>
+                    <div>
+                      <label>Incremento costo per livello</label>
+                      <input type="number" id="buildingCostIncrement" value="50" min="0">
+                    </div>
+                  </div>
+                  <div class="form-actions">
+                    <button type="submit" id="buildingSaveBtn">Aggiungi / Aggiorna</button>
+                    <button type="button" id="buildingResetBtn">Nuovo</button>
+                  </div>
+                </form>
+                <ul id="buildingList" class="card-list small"></ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- SEZIONE MAPPA -->
+          <div class="section hidden" id="section-map">
+            <h2>Mappa</h2>
+            <div class="map-layout">
+              <div class="map-side">
+                <div class="form-row grid-2">
+                  <div>
+                    <label>Larghezza (tile)</label>
+                    <input type="number" id="mapWidth" min="5" max="50" value="20">
+                  </div>
+                  <div>
+                    <label>Altezza (tile)</label>
+                    <input type="number" id="mapHeight" min="5" max="50" value="15">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <button type="button" id="mapResizeBtn">Applica dimensioni (reset mappa)</button>
+                </div>
+                <div class="form-row">
+                  <label>Strumento</label>
+                  <div class="brush-row">
+                    <label><input type="radio" name="mapBrush" value="floor" checked> Terra</label>
+                    <label><input type="radio" name="mapBrush" value="wall"> Muro</label>
+                    <label><input type="radio" name="mapBrush" value="resource"> Terreno risorsa</label>
+                    <label><input type="radio" name="mapBrush" value="spawn"> Spawn Mob</label>
+                    <label><input type="radio" name="mapBrush" value="build"> Costruzione</label>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <label>Mob per spawn</label>
+                  <select id="mapSpawnMobSelect"></select>
+                </div>
+                <div class="form-row">
+                  <label>Respawn (secondi)</label>
+                  <input type="number" id="mapRespawnTime" value="5" min="1">
+                </div>
+                <div class="form-row">
+                  <label>Tipo edificio da posizionare</label>
+                  <select id="mapBuildingTypeSelect"></select>
+                </div>
+                <div class="form-row">
+                  <button type="button" id="clearSpawnsBtn">Rimuovi tutti gli spawn</button>
+                </div>
+                <div class="form-row">
+                  <button type="button" id="clearBuildingsBtn">Rimuovi tutti gli edifici</button>
+                </div>
+                <p class="hint">
+                  Clic sulla mappa per disegnare tiles, spawn mob o edifici (miniere, segherie, cave ecc.).
+                </p>
+              </div>
+              <div class="map-canvas-wrapper">
+                <canvas id="mapCanvas" width="640" height="480"></canvas>
+                <p class="hint">Ogni quadrato è una tile. Lo stile è a tileset (grid 2D pixel). </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: GIOCO -->
+    <section class="view hidden" id="view-game">
+      <div class="game-layout">
+        <div class="game-panel">
+          <h2>Mondo di gioco</h2>
+          <canvas id="gameCanvas" width="640" height="480"></canvas>
+          <p class="hint">
+            WASD o frecce per muoverti (movimento fluido). SPAZIO/J per attaccare il mob vicino. E per raccogliere le risorse dagli edifici. F per migliorare gli edifici se hai abbastanza risorse.
+          </p>
+        </div>
+
+        <div class="game-panel">
+          <h2>Giocatore</h2>
+          <div id="playerStats"></div>
+          <button id="resetPlayerBtn">Reset Giocatore</button>
+
+          <h2>Combattimento rapido (debug)</h2>
+          <div class="form-row">
+            <label>Mob da affrontare</label>
+            <select id="battleMobSelect"></select>
+          </div>
+          <button id="startBattleBtn">Combatti!</button>
+
+          <!-- Log nascosto, solo per debug interno -->
+          <pre id="battleLog" class="log"></pre>
+
+          <h2>Inventario</h2>
+          <ul id="inventoryList" class="card-list small"></ul>
+
+          <h2>Risorse</h2>
+          <ul id="resourceListGame" class="card-list small"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>
+      Prototipo editor espandibile: oggetti, mob, livelli, risorse/edifici, mappa, combattimento in tempo reale con movimento fluido.
+      Dati salvati in locale (localStorage + JSON esportabile).
+    </small>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
