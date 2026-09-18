@@ -36,10 +36,15 @@
 
       <section class="block">
         <div class="section-head"><div><h2>Azioni rapide</h2><p>Quello che serve ogni giorno</p></div></div>
-        <div class="quick-grid">
-          <button data-open="expense"><i>＋</i><span>Spesa</span></button>
+        <button class="receipt-cta" id="receiptHomeBtn">
+          <span class="receipt-icon">📸</span>
+          <span class="receipt-copy"><b>Ho finito la spesa</b><small>Foto scontrino · registra in pochi secondi</small></span>
+          <span class="receipt-arrow">›</span>
+        </button>
+        <div class="quick-grid compact-actions">
+          <button data-screen="shopping"><i>🛒</i><span>Lista</span></button>
           <button data-screen="pantry"><i>▣</i><span>Dispensa</span></button>
-          <button id="homeCamera"><i>⌁</i><span>Foto</span></button>
+          <button id="homeCamera"><i>⌁</i><span>Foto dispensa</span></button>
           <button data-screen="review"><i>✦</i><span>Review</span></button>
         </div>
       </section>
@@ -67,6 +72,11 @@
 
     <section class="screen" id="shopping">
       <div class="screen-title"><div><h1>Spesa</h1><p>Lista, budget e acquisti reali</p></div><button class="add" data-open="shop">＋</button></div>
+      <button class="receipt-cta receipt-cta-light" id="receiptShoppingBtn">
+        <span class="receipt-icon">📸</span>
+        <span class="receipt-copy"><b>Scatta lo scontrino</b><small>Supermercato + totale, poi hai finito</small></span>
+        <span class="receipt-arrow">›</span>
+      </button>
       <div class="segmented" id="shopTabs"><button class="active" data-filter="all">Tutto</button><button data-filter="1">Spesa 1</button><button data-filter="2">Spesa 2</button></div>
       <article class="budget-mini"><div><span>Budget alimentare</span><strong id="miniSpent">€0 su €105</strong></div><b id="miniRemaining">€105</b></article>
       <div class="list" id="shoppingList"></div>
@@ -116,29 +126,81 @@
 </nav>
 
 <div class="modal" id="expenseModal"><div class="sheet"><i></i><h2>Aggiungi spesa</h2><form id="expenseForm">
-<label>Importo €<input id="expAmount" type="number" min=".01" step=".01" required></label>
-<div class="two"><label>Negozio<select id="expStore"><option>Eurospin</option><option>Famila</option><option>Altro</option></select></label><label>Categoria<select id="expCategory"><option>Alimentari</option><option>Casa/igiene</option><option>Bambini</option><option>Extra</option></select></label></div>
-<label>Nota<input id="expNote" placeholder="es. prima spesa"></label>
-<button class="primary" type="submit">Salva spesa</button><button class="secondary modal-close" type="button">Annulla</button>
+<label>Importo €<input id="expAmount" type="number" min=".01" step=".01" inputmode="decimal" required></label>
+<label>Negozio</label>
+<div class="choice-row">
+  <button type="button" class="choice active" data-target="expStoreValue" data-value="Eurospin">Eurospin</button>
+  <button type="button" class="choice" data-target="expStoreValue" data-value="Famila">Famila</button>
+  <button type="button" class="choice" data-target="expStoreValue" data-value="Altro">Altro</button>
+</div>
+<input type="hidden" id="expStoreValue" value="Eurospin">
+<label>Categoria</label>
+<div class="choice-row">
+  <button type="button" class="choice active" data-target="expCategoryValue" data-value="Alimentari">Alimentari</button>
+  <button type="button" class="choice" data-target="expCategoryValue" data-value="Casa/igiene">Casa</button>
+  <button type="button" class="choice" data-target="expCategoryValue" data-value="Bambini">Bambini</button>
+  <button type="button" class="choice" data-target="expCategoryValue" data-value="Extra">Extra</button>
+</div>
+<input type="hidden" id="expCategoryValue" value="Alimentari">
+<label>Nota <span class="optional">facoltativa</span><input id="expNote" placeholder="es. farmacia, pannolini..."></label>
+<button class="primary" type="submit">Salva</button><button class="secondary modal-close" type="button">Annulla</button>
 </form></div></div>
 
 <div class="modal" id="shopModal"><div class="sheet"><i></i><h2>Aggiungi alla lista</h2><form id="shopForm">
 <label>Prodotto<input id="shopName" required placeholder="es. pollo fresco"></label>
-<div class="two"><label>Negozio<select id="shopStore"><option>Eurospin</option><option>Famila</option></select></label><label>Giorno<select id="shopDay"><option value="1">Spesa 1</option><option value="2">Spesa 2</option></select></label></div>
-<label>Stima €<input id="shopPrice" type="number" min="0" step=".01"></label>
+<label>Negozio</label>
+<div class="choice-row">
+  <button type="button" class="choice active" data-target="shopStoreValue" data-value="Eurospin">Eurospin</button>
+  <button type="button" class="choice" data-target="shopStoreValue" data-value="Famila">Famila</button>
+</div>
+<input type="hidden" id="shopStoreValue" value="Eurospin">
+<label>Quando</label>
+<div class="choice-row">
+  <button type="button" class="choice active" data-target="shopDayValue" data-value="1">Spesa 1</button>
+  <button type="button" class="choice" data-target="shopDayValue" data-value="2">Spesa 2</button>
+</div>
+<input type="hidden" id="shopDayValue" value="1">
+<label>Stima € <span class="optional">facoltativa</span><input id="shopPrice" type="number" min="0" step=".01" inputmode="decimal"></label>
 <button class="primary" type="submit">Aggiungi</button><button class="secondary modal-close" type="button">Annulla</button>
 </form></div></div>
 
 <div class="modal" id="pantryModal"><div class="sheet"><i></i><h2>Aggiungi in dispensa</h2><form id="pantryForm">
 <label>Prodotto<input id="pantryName" required placeholder="es. Olio EVO"></label>
-<div class="two"><label>Residuo<select id="pantryLevel"><option value="100">Pieno</option><option value="75">Quasi pieno</option><option value="50">Metà</option><option value="25">Poco</option><option value="5">Quasi finito</option><option value="0">Da comprare</option></select></label><label>Tipo<select id="pantryType"><option value="normal">Alimento</option><option value="staple">Scorta base</option></select></label></div>
+<label>Quanto ce n'è?</label>
+<div class="choice-row qty-choices">
+  <button type="button" class="choice active" data-target="pantryLevelValue" data-value="100">Pieno</button>
+  <button type="button" class="choice" data-target="pantryLevelValue" data-value="50">Metà</button>
+  <button type="button" class="choice" data-target="pantryLevelValue" data-value="25">Poco</button>
+  <button type="button" class="choice" data-target="pantryLevelValue" data-value="0">Finito</button>
+</div>
+<input type="hidden" id="pantryLevelValue" value="100">
+<label>Tipo</label>
+<div class="choice-row">
+  <button type="button" class="choice active" data-target="pantryTypeValue" data-value="normal">Alimento</button>
+  <button type="button" class="choice" data-target="pantryTypeValue" data-value="staple">Scorta base</button>
+</div>
+<input type="hidden" id="pantryTypeValue" value="normal">
 <label>Icona<select id="pantryIcon"><option>🍝</option><option>🥛</option><option>🥚</option><option>🥔</option><option>🥬</option><option>🍎</option><option>🫒</option><option>🧂</option><option>🍚</option><option>🫘</option></select></label>
 <button class="primary" type="submit">Aggiungi</button><button class="secondary modal-close" type="button">Annulla</button>
 </form></div></div>
 
-<div class="modal" id="levelModal"><div class="sheet"><i></i><h2 id="levelTitle">Aggiorna residuo</h2>
-<label>Quanto ne è rimasto?<select id="levelValue"><option value="100">Pieno</option><option value="75">Quasi pieno</option><option value="50">Metà</option><option value="25">Poco</option><option value="5">Quasi finito</option><option value="0">Da comprare</option></select></label>
-<button class="primary" id="saveLevel">Aggiorna</button><button class="secondary modal-close" type="button">Annulla</button>
+<input type="file" accept="image/*" capture="environment" id="receiptInput" hidden>
+
+<div class="modal" id="receiptModal"><div class="sheet receipt-sheet"><i></i>
+  <div class="receipt-sheet-head"><span class="receipt-big">🧾</span><div><h2>Scontrino acquisito</h2><p>Due tocchi e hai finito.</p></div></div>
+  <form id="receiptForm">
+    <label>Dove hai fatto la spesa?</label>
+    <div class="choice-row store-big">
+      <button type="button" class="choice active" data-target="receiptStoreValue" data-value="Eurospin">Eurospin</button>
+      <button type="button" class="choice" data-target="receiptStoreValue" data-value="Famila">Famila</button>
+      <button type="button" class="choice" data-target="receiptStoreValue" data-value="Altro">Altro</button>
+    </div>
+    <input type="hidden" id="receiptStoreValue" value="Eurospin">
+    <label>Totale €<input id="receiptTotal" type="number" min=".01" step=".01" inputmode="decimal" placeholder="0,00" required></label>
+    <div class="receipt-thumb" id="receiptThumb"></div>
+    <button class="primary primary-large" type="submit">Salva scontrino</button>
+    <button class="secondary modal-close" type="button">Annulla</button>
+  </form>
 </div></div>
 
 <div class="toast" id="toast"></div>
