@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#F6F4EE">
+  <title>Family CFO</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <div class="safe-top"></div>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">F</div>
+      <div><strong>Family CFO</strong><span>Paolo + famiglia</span></div>
+    </div>
+    <button class="avatar" id="profileBtn">PF</button>
+  </header>
+
+  <main>
+    <section class="screen active" id="home">
+      <article class="hero">
+        <div>
+          <span class="eyebrow">BUDGET SETTIMANALE</span>
+          <h1 id="remaining">€105,00</h1>
+          <p id="budgetCopy">Tutto il budget è ancora disponibile</p>
+        </div>
+        <div class="ring" id="ring"><b id="ringPct">0%</b></div>
+        <div class="hero-stats">
+          <span><b id="spent">€0</b> spesi</span>
+          <span><b id="planned">€58</b> pianificati</span>
+          <span><b id="lowHero">2</b> quasi finiti</span>
+        </div>
+      </article>
+
+      <section class="block">
+        <div class="section-head"><div><h2>Azioni rapide</h2><p>Quello che serve ogni giorno</p></div></div>
+        <div class="quick-grid">
+          <button data-open="expense"><i>＋</i><span>Spesa</span></button>
+          <button data-screen="pantry"><i>▣</i><span>Dispensa</span></button>
+          <button id="homeCamera"><i>⌁</i><span>Foto</span></button>
+          <button data-screen="review"><i>✦</i><span>Review</span></button>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="section-head"><div><h2>Settimana in breve</h2><p>Solo indicatori utili</p></div></div>
+        <div class="metric-grid">
+          <article><span>🧺</span><b id="pantryMetric">8</b><small>in dispensa</small></article>
+          <article><span>🛒</span><b id="shoppingMetric">8</b><small>da comprare</small></article>
+          <article><span>⚠️</span><b id="lowMetric">2</b><small>quasi finiti</small></article>
+          <article><span>🌱</span><b>0</b><small>sprechi segnati</small></article>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="section-head"><div><h2>Le due spese</h2><p>Freschi divisi durante la settimana</p></div><button class="link" data-screen="shopping">Apri lista</button></div>
+        <article class="card" id="tripCards"></article>
+      </section>
+
+      <section class="block">
+        <div class="section-head"><div><h2>Family insight</h2><p>Preparato dai dati dell'app</p></div></div>
+        <article class="insight"><div class="spark">✦</div><div><strong>Prima consumiamo, poi compriamo</strong><p id="insightText"></p></div></article>
+      </section>
+    </section>
+
+    <section class="screen" id="shopping">
+      <div class="screen-title"><div><h1>Spesa</h1><p>Lista, budget e acquisti reali</p></div><button class="add" data-open="shop">＋</button></div>
+      <div class="segmented" id="shopTabs"><button class="active" data-filter="all">Tutto</button><button data-filter="1">Spesa 1</button><button data-filter="2">Spesa 2</button></div>
+      <article class="budget-mini"><div><span>Budget alimentare</span><strong id="miniSpent">€0 su €105</strong></div><b id="miniRemaining">€105</b></article>
+      <div class="list" id="shoppingList"></div>
+      <section class="block">
+        <div class="section-head"><div><h2>Spese registrate</h2><p>Servono alla review</p></div><button class="link" data-open="expense">+ Aggiungi</button></div>
+        <div class="list" id="expenseList"></div>
+      </section>
+    </section>
+
+    <section class="screen" id="pantry">
+      <div class="screen-title"><div><h1>Dispensa</h1><p>Residui stimati, non contabilità al grammo</p></div><button class="add" data-open="pantry">＋</button></div>
+      <article class="scan">
+        <button id="cameraBtn">📷</button>
+        <div><strong>Foto veloce dispensa</strong><p>Scatta frigo o scaffale e poi correggi solo i residui che cambiano.</p></div>
+      </article>
+      <input type="file" accept="image/*" capture="environment" id="cameraInput" hidden>
+      <div class="photo" id="photoBox"></div>
+      <div class="pantry-grid" id="pantryGrid"></div>
+    </section>
+
+    <section class="screen" id="menu">
+      <div class="screen-title"><div><h1>Menu</h1><p>Una base comune per tutta la famiglia</p></div><button class="add" id="menuRefresh">↻</button></div>
+      <div class="days" id="days"></div>
+      <div id="mealCards"></div>
+      <article class="insight compact"><div class="spark">✓</div><div><strong>Regola del menu</strong><p>Prima usa ciò che avete già. Olio, sale, zucchero e altre scorte base non vengono comprati a intervalli fissi.</p></div></article>
+    </section>
+
+    <section class="screen" id="review">
+      <div class="screen-title"><div><h1>Review</h1><p>Pronta da condividere con ChatGPT</p></div></div>
+      <article class="score-card"><div class="score" id="score">92</div><div><strong id="scoreTitle">Settimana ben impostata</strong><p>Budget, dispensa e lista vengono riletti insieme.</p></div></article>
+      <div class="review-notes" id="reviewNotes"></div>
+      <section class="block">
+        <div class="section-head"><div><h2>Testo pronto</h2><p>Nessuna API nella V1</p></div></div>
+        <article class="card review-text" id="reviewText"></article>
+        <div class="action-row"><button class="secondary" id="copyBtn">Copia</button><button class="primary" id="downloadBtn">Scarica</button></div>
+      </section>
+    </section>
+  </main>
+</div>
+
+<nav class="bottom-nav">
+  <button class="active" data-screen="home"><span>⌂</span>Home</button>
+  <button data-screen="shopping"><span>🛒</span>Spesa</button>
+  <button data-screen="pantry"><span>▣</span>Dispensa</button>
+  <button data-screen="menu"><span>⌘</span>Menu</button>
+  <button data-screen="review"><span>✦</span>Review</button>
+</nav>
+
+<div class="modal" id="expenseModal"><div class="sheet"><i></i><h2>Aggiungi spesa</h2><form id="expenseForm">
+<label>Importo €<input id="expAmount" type="number" min=".01" step=".01" required></label>
+<div class="two"><label>Negozio<select id="expStore"><option>Eurospin</option><option>Famila</option><option>Altro</option></select></label><label>Categoria<select id="expCategory"><option>Alimentari</option><option>Casa/igiene</option><option>Bambini</option><option>Extra</option></select></label></div>
+<label>Nota<input id="expNote" placeholder="es. prima spesa"></label>
+<button class="primary" type="submit">Salva spesa</button><button class="secondary modal-close" type="button">Annulla</button>
+</form></div></div>
+
+<div class="modal" id="shopModal"><div class="sheet"><i></i><h2>Aggiungi alla lista</h2><form id="shopForm">
+<label>Prodotto<input id="shopName" required placeholder="es. pollo fresco"></label>
+<div class="two"><label>Negozio<select id="shopStore"><option>Eurospin</option><option>Famila</option></select></label><label>Giorno<select id="shopDay"><option value="1">Spesa 1</option><option value="2">Spesa 2</option></select></label></div>
+<label>Stima €<input id="shopPrice" type="number" min="0" step=".01"></label>
+<button class="primary" type="submit">Aggiungi</button><button class="secondary modal-close" type="button">Annulla</button>
+</form></div></div>
+
+<div class="modal" id="pantryModal"><div class="sheet"><i></i><h2>Aggiungi in dispensa</h2><form id="pantryForm">
+<label>Prodotto<input id="pantryName" required placeholder="es. Olio EVO"></label>
+<div class="two"><label>Residuo<select id="pantryLevel"><option value="100">Pieno</option><option value="75">Quasi pieno</option><option value="50">Metà</option><option value="25">Poco</option><option value="5">Quasi finito</option><option value="0">Da comprare</option></select></label><label>Tipo<select id="pantryType"><option value="normal">Alimento</option><option value="staple">Scorta base</option></select></label></div>
+<label>Icona<select id="pantryIcon"><option>🍝</option><option>🥛</option><option>🥚</option><option>🥔</option><option>🥬</option><option>🍎</option><option>🫒</option><option>🧂</option><option>🍚</option><option>🫘</option></select></label>
+<button class="primary" type="submit">Aggiungi</button><button class="secondary modal-close" type="button">Annulla</button>
+</form></div></div>
+
+<div class="modal" id="levelModal"><div class="sheet"><i></i><h2 id="levelTitle">Aggiorna residuo</h2>
+<label>Quanto ne è rimasto?<select id="levelValue"><option value="100">Pieno</option><option value="75">Quasi pieno</option><option value="50">Metà</option><option value="25">Poco</option><option value="5">Quasi finito</option><option value="0">Da comprare</option></select></label>
+<button class="primary" id="saveLevel">Aggiorna</button><button class="secondary modal-close" type="button">Annulla</button>
+</div></div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
