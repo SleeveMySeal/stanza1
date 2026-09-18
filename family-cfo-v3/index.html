@@ -152,7 +152,13 @@
 </form></div></div>
 
 <div class="modal" id="shopModal"><div class="sheet"><i></i><h2>Aggiungi alla lista</h2><form id="shopForm">
-<label>Prodotto<input id="shopName" required placeholder="es. pollo fresco"></label>
+<div class="shop-product-picker">
+  <label>Cerca un prodotto preciso<input id="shopProductSearch" placeholder="Marca, prodotto, barcode..."></label>
+  <div id="shopProductResults" class="shop-product-results"></div>
+  <input type="hidden" id="shopProductId">
+  <div id="shopSelectedProduct" class="shop-selected-product" hidden></div>
+</div>
+<label id="genericShopLabel">Oppure voce generica <span class="optional">per sfusi/freschi</span><input id="shopName" placeholder="es. zucchine sfuse"></label>
 <label>Negozio</label>
 <div class="choice-row">
   <button type="button" class="choice active" data-target="shopStoreValue" data-value="Eurospin">Eurospin</button>
