@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#eef6f1">
+<title>Kinderopolis — Demo interattiva</title>
+<style>
+:root{--bg:#f5f2eb;--paper:#fffdf9;--ink:#29463f;--muted:#74817d;--line:#e6dfd5;--green:#54786c;--blue:#dff1fb;--mint:#e7f4eb;--sun:#fff0bd;--peach:#ffe0d3;--lilac:#ece5f8;--red:#f7dddd}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 0 0,#dff3fb,transparent 30%),radial-gradient(circle at 100% 8%,#fff1c7,transparent 25%),var(--bg)}
+body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}.app{max-width:520px;margin:auto;padding:16px 14px 38px}
+.hero{background:linear-gradient(140deg,#edf8f2,#fff9e8);border:1px solid #dce7e1;border-radius:28px;padding:20px;box-shadow:0 15px 38px rgba(47,72,64,.09)}
+.kicker{font-size:10px;letter-spacing:.13em;font-weight:900;color:#74847e}h1{margin:5px 0 7px;font-size:31px;letter-spacing:-1px}.hero p{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.badge{display:inline-flex;align-items:center;gap:7px;margin-top:13px;background:#fff;border:1px solid #dde7e2;border-radius:999px;padding:8px 11px;font-size:11px;font-weight:800}.dot{width:7px;height:7px;border-radius:50%;background:#76a18d;box-shadow:0 0 0 5px rgba(118,161,141,.13)}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0}.tabs button{border:1px solid #e1dcd4;background:rgba(255,255,255,.75);border-radius:17px;padding:11px 6px;font:inherit;font-size:12px;font-weight:850;color:#687773}.tabs button.active{background:var(--green);color:#fff;border-color:var(--green)}
+.head{margin:18px 3px 10px}.head b{font-size:20px;letter-spacing:-.4px}.head div{font-size:11px;color:var(--muted);margin-top:3px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:23px;padding:15px;min-height:148px;box-shadow:0 8px 22px rgba(52,73,67,.05);cursor:pointer;transition:.18s transform}.card:active{transform:scale(.985)}.card.wide{grid-column:1/-1;min-height:132px}
+.ico{width:45px;height:45px;border-radius:15px;display:grid;place-items:center;margin-bottom:11px}.ico svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.blue{background:var(--blue);color:#37667b}.mint{background:var(--mint);color:#467260}.sun{background:var(--sun);color:#7a682e}.peach{background:var(--peach);color:#915c48}.lilac{background:var(--lilac);color:#635284}.red{background:var(--red);color:#8a5353}
+.ct{font-size:16px;font-weight:900;letter-spacing:-.25px}.cs{font-size:11.5px;line-height:1.45;color:var(--muted);margin-top:5px}.arrow{position:absolute;right:12px;top:12px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#f5f2ed;color:#74817d;font-weight:900}
+.note{margin-top:15px;background:#edf6f1;border:1px solid #dce9e3;border-radius:20px;padding:13px 14px;font-size:11.5px;line-height:1.5;color:#5b716a}.note b{color:#3b5c52}.footer{text-align:center;margin-top:20px;font-size:10px;line-height:1.5;color:#87918e}
+.overlay{position:fixed;inset:0;background:rgba(28,42,38,.45);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:.22s opacity;z-index:50}.overlay.open{opacity:1;pointer-events:auto}
+.sheet{width:min(520px,100%);background:#fffdf9;border-radius:29px 29px 0 0;padding:12px 17px calc(22px + env(safe-area-inset-bottom));max-height:88vh;overflow:auto;transform:translateY(105%);transition:.34s transform cubic-bezier(.2,.9,.3,1);box-shadow:0 -18px 50px rgba(0,0,0,.16)}.overlay.open .sheet{transform:translateY(0)}
+.handle{width:43px;height:5px;border-radius:99px;background:#d8d3cb;margin:1px auto 14px}.shead{display:flex;gap:12px;align-items:center}.sico{width:54px;height:54px;border-radius:18px;display:grid;place-items:center;flex:0 0 auto}.sico svg{width:29px;height:29px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.sheet h2{margin:0 0 2px;font-size:23px;letter-spacing:-.6px}.role{font-size:11px;color:var(--muted);font-weight:800}.intro{font-size:13px;line-height:1.55;color:#5d6d68;margin:15px 0 11px}.box{border:1px solid var(--line);border-radius:17px;padding:12px 13px;background:#fff;margin-top:8px}.lab{font-size:10px;text-transform:uppercase;letter-spacing:.09em;font-weight:900;color:#88918e;margin-bottom:5px}.txt{font-size:12px;line-height:1.5;color:#51625d}.flow{margin-top:9px;padding:12px;border-radius:17px;background:#f1f7f4;border:1px solid #deebe5}.flowrow{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.chip{background:#fff;border:1px solid #dfe7e3;border-radius:999px;padding:7px 9px;font-size:10.5px;font-weight:850}.fa{color:#95a39e}.close{width:100%;margin-top:13px;border:0;background:#4d7166;color:#fff;border-radius:16px;padding:14px;font:inherit;font-weight:900}
+@media(min-width:700px){.overlay{align-items:center}.sheet{border-radius:29px}}
+</style>
+</head>
+<body>
+<main class="app">
+<section class="hero"><div class="kicker">KINDER’S SCHOOL · DEMO INTERATTIVA</div><h1>Kinderopolis</h1><p>Tocca le funzioni per scoprire, in pochi secondi, a cosa servono e come potrebbero funzionare nella scuola.</p><div class="badge"><span class="dot"></span>Demo esplorabile · nessun dato reale</div></section>
+<nav class="tabs"><button class="active" data-role="Genitore">Famiglia</button><button data-role="Insegnante">Insegnante</button><button data-role="Direzione">Direzione</button></nav>
+<section class="head"><b id="title"></b><div id="subtitle"></div></section>
+<section id="grid" class="grid"></section>
+<div class="note"><b>Questa è una demo:</b> funzioni, flussi, testi e schermate verranno rielaborati in base alle esigenze reali della Direzione prima della messa in produzione.</div>
+<div class="footer">Kinderopolis · piattaforma digitale modulare per la scuola<br>Demo dimostrativa — SleeveMySeal S.r.l.</div>
+</main>
+<div class="overlay" id="overlay"><section class="sheet"><div class="handle"></div><div class="shead"><div class="sico" id="sico"></div><div><h2 id="stitle"></h2><div class="role" id="srole"></div></div></div><div class="intro" id="sintro"></div><div class="box"><div class="lab">A cosa serve</div><div class="txt" id="spurpose"></div></div><div class="box"><div class="lab">Nella pratica</div><div class="txt" id="show"></div></div><div class="flow"><div class="lab">Flusso semplice</div><div class="flowrow" id="sflow"></div></div><button class="close" id="close">Ho capito</button></section></div>
+<script>
+const I={
+cal:`<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18M8 14h3M13 14h3M8 17h3"/></svg>`,
+msg:`<svg viewBox="0 0 24 24"><path d="M4 13V9l12-5v14L4 13Z"/><path d="M8 14l1.5 5h3L11 15M18 8c1.5 1 1.5 3 0 4"/></svg>`,
+pay:`<svg viewBox="0 0 24 24"><path d="M4 7h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a3 3 0 0 1 3-3h11v3M15 13h5"/></svg>`,
+usr:`<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c.7-4 3.4-6 8-6s7.3 2 8 6"/></svg>`,
+hrt:`<svg viewBox="0 0 24 24"><path d="M20.8 4.8a5.5 5.5 0 0 0-7.8 0L12 5.9l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.4a5.5 5.5 0 0 0 0-7.8Z"/></svg>`,
+bel:`<svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>`,
+users:`<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c.5-4 2.6-6 6-6s5.5 2 6 6M14 15c4-.3 6 1.4 7 5"/></svg>`,
+food:`<svg viewBox="0 0 24 24"><path d="M4 3v7a3 3 0 0 0 3 3V3M7 13v8M14 3v9c0 2 1.2 3 3 3h1V3h-1c-1.8 0-3 1.1-3 3ZM18 15v6"/></svg>`,
+moon:`<svg viewBox="0 0 24 24"><path d="M20 15.5A8 8 0 1 1 8.5 4 7 7 0 0 0 20 15.5Z"/></svg>`,
+star:`<svg viewBox="0 0 24 24"><path d="m12 3 1.2 3.3L16.5 7.5l-3.3 1.2L12 12l-1.2-3.3-3.3-1.2 3.3-1.2L12 3ZM18 13l.8 2.2L21 16l-2.2.8L18 19l-.8-2.2L15 16l2.2-.8L18 13Z"/></svg>`,
+clip:`<svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M8 9h8M8 13h8M8 17h5"/></svg>`,
+bld:`<svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M8 10h2M14 10h2M8 14h2M14 14h2M10 21v-4h4v4M2 21h20"/></svg>`,
+set:`<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>`
+};
+const D={
+Genitore:{t:"Per la famiglia",s:"Informazioni chiare, senza cercarle in più punti",c:[
+["Oggi","cal","blue","La giornata del bambino in una sola schermata.","Una vista semplice della giornata scolastica.","Raccoglie orari previsti, programma, menu, attività svolte e promemoria in un solo punto.","La famiglia sceglie la data e vede ciò che la scuola ha pubblicato. Se manca qualcosa compare chiaramente “Non elaborato”.",["Scuola pubblica","Oggi si aggiorna","Famiglia consulta"]],
+["Comunicazioni","msg","sun","Avvisi ufficiali con presa visione.","Tutte le comunicazioni della scuola raccolte in ordine cronologico.","Riduce messaggi dispersi tra chat, fogli e gruppi. Ogni avviso può avere destinatari precisi.","Il genitore apre l'avviso e conferma “Ho preso visione”. La Direzione può verificare la lettura.",["Direzione pubblica","Famiglia riceve","Presa visione"]],
+["Pagamenti","pay","mint","Scadenze e stato dei pagamenti in un punto unico.","Una sezione dedicata alla situazione amministrativa.","Tiene separate le informazioni economiche dalle comunicazioni quotidiane.","La famiglia vede solo importi, scadenze e stato relativi al proprio bambino.",["Scuola inserisce","Famiglia consulta","Stato aggiornato"]],
+["Profilo bambino","usr","lilac","Dati, deleghe, documenti e richieste.","Lo spazio dedicato alle informazioni personali.","Raccoglie ciò che non appartiene alla giornata: documenti, consensi, delegati e richieste.","Le informazioni sono disponibili solo ai profili autorizzati.",["Famiglia aggiorna","Scuola verifica","Dato disponibile"]],
+["Salute e dieta","hrt","red","Segnalazioni importanti subito visibili.","Un sistema visivo per allergie, intolleranze e diete.","Fa emergere subito le informazioni che richiedono attenzione.","Il riquadro cambia colore e mostra il titolo del problema nelle schermate autorizzate.",["Famiglia segnala","Sistema evidenzia","Staff vede alert"]],
+["Notifiche","bel","peach","Aggiornamenti direttamente sul telefono.","Web Push anche senza app dagli store.","Consente di segnalare nuove comunicazioni e promemoria anche quando Kinderopolis è chiusa.","Dopo l'installazione in Home e il consenso, un tap sulla notifica apre direttamente il contenuto.",["Scuola invia","Telefono notifica","Tap apre contenuto"]]
+]},
+Insegnante:{t:"Per l'insegnante",s:"Azioni quotidiane guidate e veloci",c:[
+["Oggi","cal","blue","Il punto operativo della giornata.","La schermata principale dello staff.","Evita di saltare tra più sezioni: da qui partono presenze, pranzo, riposo e attività.","Ogni passaggio è guidato, con riepilogo e conferma finale.",["Apri Oggi","Completa","Conferma"]],
+["Presenze","users","mint","Presenti e assenti con conferma finale.","Registro rapido della sezione assegnata.","Permette di registrare le presenze senza fogli separati.","Si selezionano i bambini, si controlla il riepilogo e si conferma.",["Seleziona","Controlla","Conferma"]],
+["Pranzo","food","sun","Gestione collettiva con eccezioni.","Una procedura rapida per annotare come hanno mangiato.","Riduce i tocchi usando prima la situazione più comune e poi solo le eccezioni.","Si parte dal gruppo e si modificano soltanto i singoli bambini quando serve.",["Scelta gruppo","Eccezioni","Riepilogo"]],
+["Riposo","moon","lilac","Durata, eccezioni e note.","Registrazione guidata del riposo.","Permette di annotare chi ha dormito, per quanto tempo e le eventuali particolarità.","Si registra il gruppo e si interviene solo sulle eccezioni.",["Gruppo","Eccezioni","Conferma"]],
+["Attività","star","peach","Cosa è stato fatto e chi ha partecipato.","Registrazione delle attività svolte.","Trasforma ciò che succede in classe in un'informazione ordinata e condivisibile.","Si inseriscono titolo, descrizione e partecipanti, poi si pubblica se previsto.",["Registra","Partecipanti","Pubblica"]],
+["Bambini","clip","red","Schede consultative senza duplicare il registro.","Accesso alle informazioni utili dei bambini assegnati.","Permette di consultare dati e alert senza creare un secondo punto operativo.","Le azioni quotidiane restano nella sezione Oggi.",["Apri scheda","Consulta","Torna a Oggi"]]
+]},
+Direzione:{t:"Per la Direzione",s:"Contenuti, controllo e configurazione della scuola",c:[
+["Centro contenuti","star","peach","Programma, menu, attività, promemoria e avvisi.","Il punto da cui si prepara ciò che vedono famiglie e staff.","Mantiene il controllo su ciò che viene pubblicato.","Ogni contenuto può essere Non elaborato, Bozza o Pubblicato. Solo ciò che è pubblicato diventa visibile.",["Crea","Bozza","Pubblica"]],
+["Programma del giorno","cal","blue","Cosa faranno i bambini.","Programmazione quotidiana visibile alle famiglie.","Condivide attività e momenti previsti senza messaggi separati.","La Direzione compila e pubblica: il programma compare automaticamente in Oggi.",["Compila","Pubblica","Famiglia vede"]],
+["Menu","food","sun","Il pasto previsto, direttamente in Oggi.","Gestione semplice del menu quotidiano.","Rende immediatamente consultabile ciò che verrà servito.","Si compilano le voci previste dalla scuola; quelle vuote non vengono mostrate.",["Inserisci","Pubblica","Oggi si aggiorna"]],
+["Comunicazioni","msg","mint","Avvisi mirati con presa visione.","Canale ufficiale tra scuola, famiglie e staff.","Consente di scegliere i destinatari e verificare la lettura.","Si seleziona il pubblico, si pubblica e si controlla lo stato delle prese visione.",["Destinatari","Pubblica","Controlla letture"]],
+["Sezioni e anno","bld","lilac","Struttura della scuola configurabile.","Gestione di anno educativo, sezioni e impostazioni.","Adatta Kinderopolis all'organizzazione reale della scuola.","Si configurano sezioni, denominazioni, orari e utenti senza modificare il codice.",["Configura anno","Crea sezioni","Assegna utenti"]],
+["Funzioni attive","set","red","Ogni scuola può avere moduli diversi.","Personalizzazione senza creare copie del software.","Permette di attivare solo ciò che serve a ogni scuola.","Le funzioni vengono abilitate con configurazioni e feature flag; un modulo può essere attivo per una sola scuola.",["Richiesta","Attiva modulo","Solo chi serve lo vede"]]
+]}};
+
+let role="Genitore";
+const grid=document.getElementById("grid"),title=document.getElementById("title"),subtitle=document.getElementById("subtitle"),overlay=document.getElementById("overlay");
+function render(){
+ title.textContent=D[role].t; subtitle.textContent=D[role].s;
+ grid.innerHTML=D[role].c.map((x,i)=>`<article class="card ${i===0?'wide':''}" data-i="${i}"><div class="arrow">›</div><div class="ico ${x[2]}">${I[x[1]]}</div><div class="ct">${x[0]}</div><div class="cs">${x[3]}</div></article>`).join("");
+ grid.querySelectorAll(".card").forEach(c=>c.onclick=()=>openFeature(+c.dataset.i));
+}
+function openFeature(i){
+ const x=D[role].c[i];
+ stitle.textContent=x[0];srole.textContent="Funzione · "+role;sico.className="sico "+x[2];sico.innerHTML=I[x[1]];sintro.textContent=x[4];spurpose.textContent=x[5];show.textContent=x[6];
+ sflow.innerHTML=x[7].map((v,n)=>`${n?'<span class="fa">→</span>':''}<span class="chip">${v}</span>`).join("");
+ overlay.classList.add("open");document.body.style.overflow="hidden";
+}
+function shut(){overlay.classList.remove("open");document.body.style.overflow=""}
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));b.classList.add("active");role=b.dataset.role;render()});
+close.onclick=shut;overlay.onclick=e=>{if(e.target===overlay)shut()};document.addEventListener("keydown",e=>{if(e.key==="Escape")shut()});render();
+</script>
+</body>
+</html>
