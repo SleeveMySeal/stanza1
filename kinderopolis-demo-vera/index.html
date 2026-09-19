@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f4f6f2">
+<title>Kinderopolis — Demo Vera</title>
+<style>
+:root{
+ --bg:#f3f2ec;--paper:#fffdfa;--ink:#243f39;--muted:#73817c;--line:#e6e0d7;
+ --green:#4f7569;--green2:#e9f4ee;--blue:#e3f1fb;--yellow:#fff0bf;--peach:#ffe2d4;
+ --lilac:#eee7f8;--red:#f8e0e0;--shadow:0 14px 38px rgba(45,68,62,.10)
+}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;background:linear-gradient(180deg,#eef7f4 0,#f3f2ec 210px);color:var(--ink)}
+body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}button,input,select,textarea{font:inherit}.app{max-width:1180px;margin:auto;padding:14px 14px 90px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.brand b{font-size:22px;letter-spacing:-.6px}.brand div{font-size:10px;color:var(--muted);font-weight:800;letter-spacing:.12em}.demo{font-size:10px;background:#fff;border:1px solid #dbe5df;border-radius:999px;padding:7px 9px;color:#61736d;font-weight:800}
+.hero{background:linear-gradient(135deg,#edf8f3,#fff7dc);border:1px solid #dce7e1;border-radius:28px;padding:19px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-65px;top:-85px;background:rgba(244,194,118,.18)}.hero h1{margin:0 0 6px;font-size:28px;letter-spacing:-.9px}.hero p{margin:0;max-width:690px;font-size:12.5px;line-height:1.52;color:var(--muted)}
+.rolebar{display:flex;gap:7px;overflow:auto;padding:14px 1px 8px;scrollbar-width:none}.rolebar::-webkit-scrollbar{display:none}.role{white-space:nowrap;border:1px solid #dfdad2;background:#fff9;border-radius:999px;padding:9px 12px;font-size:11px;font-weight:850;color:#687671}.role.active{background:var(--green);border-color:var(--green);color:#fff}
+.layout{display:grid;grid-template-columns:1fr;gap:12px}.side,.panel{background:var(--paper);border:1px solid var(--line);border-radius:24px;box-shadow:0 8px 24px rgba(47,68,62,.05)}.side{padding:12px}.panel{padding:14px}
+.switch{display:grid;grid-template-columns:1fr 1fr;gap:7px}.switch button{border:1px solid #e2ddd4;background:#faf7f1;border-radius:15px;padding:10px 6px;font-size:11px;font-weight:850;color:#687671}.switch button.active{background:#e8f2ed;color:#345d50;border-color:#cfe0d8}
+.nav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px}.nav button{border:0;border-radius:14px;background:#f5f2ed;padding:10px 6px;font-size:10px;font-weight:800;color:#6e7976}.nav button.active{background:#4f7569;color:#fff}.nav .ico{display:block;font-size:18px;margin-bottom:4px}
+.pagehead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:13px}.pagehead h2{font-size:21px;margin:0 0 4px;letter-spacing:-.5px}.pagehead p{margin:0;font-size:11px;color:var(--muted);line-height:1.45}.pill{font-size:9px;border-radius:999px;padding:6px 8px;background:#edf4f1;color:#557067;font-weight:900}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.kpi{border:1px solid var(--line);border-radius:19px;padding:12px;background:#fff}.kpi .n{font-size:24px;font-weight:950;letter-spacing:-.7px}.kpi .l{font-size:10px;color:var(--muted);margin-top:2px}.kpi.warn{background:#fff9e9}.kpi.bad{background:#fff0f0}.kpi.good{background:#edf7f1}
+.sectiontitle{display:flex;justify-content:space-between;align-items:center;margin:17px 2px 8px}.sectiontitle b{font-size:14px}.sectiontitle span{font-size:9px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:1fr;gap:8px}.card{border:1px solid var(--line);background:#fff;border-radius:18px;padding:12px;cursor:pointer;transition:.17s transform,.17s box-shadow}.card:active{transform:scale(.99)}.card:hover{box-shadow:0 9px 24px rgba(42,66,59,.07)}.cardtop{display:flex;justify-content:space-between;gap:10px}.ctitle{font-size:13px;font-weight:900}.csub{font-size:10.5px;color:var(--muted);line-height:1.42;margin-top:4px}.tag{font-size:8.5px;border-radius:999px;padding:5px 7px;background:#f0f4f2;color:#587066;font-weight:900;height:max-content}.tag.red{background:#fdeaea;color:#9a5757}.tag.yellow{background:#fff4cf;color:#846f2f}.tag.blue{background:#eaf4fb;color:#4a6c7b}
+.list{display:grid;gap:7px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);background:#fff;border-radius:17px;padding:10px 11px}.who{display:flex;align-items:center;gap:9px;min-width:0}.avatar{width:37px;height:37px;border-radius:13px;display:grid;place-items:center;font-size:18px;background:#eff4f1;flex:0 0 auto}.who b{font-size:11.5px;display:block}.who small{display:block;font-size:9.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px}.status{font-size:8.5px;font-weight:900;padding:5px 7px;border-radius:999px;background:#edf5f1;color:#577167;white-space:nowrap}.status.bad{background:#fdeaea;color:#9b5757}.status.warn{background:#fff4d3;color:#846d2d}
+.action{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.btn{border:0;background:#4f7569;color:#fff;border-radius:14px;padding:10px 12px;font-size:10.5px;font-weight:900}.btn.secondary{background:#f0f4f2;color:#4f665f}.btn.warn{background:#8b6f2f}.btn.red{background:#955959}
+.empty{padding:26px;text-align:center;color:var(--muted);font-size:11px}
+.table{width:100%;border-collapse:separate;border-spacing:0 6px}.table th{font-size:8.5px;text-align:left;color:#8b9591;padding:0 8px;text-transform:uppercase;letter-spacing:.08em}.table td{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 8px;font-size:10px}.table td:first-child{border-left:1px solid var(--line);border-radius:14px 0 0 14px}.table td:last-child{border-right:1px solid var(--line);border-radius:0 14px 14px 0}
+.overlay{position:fixed;inset:0;background:rgba(24,38,34,.46);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);opacity:0;pointer-events:none;display:flex;align-items:flex-end;justify-content:center;z-index:60;transition:.22s}.overlay.open{opacity:1;pointer-events:auto}.sheet{width:min(640px,100%);max-height:90vh;overflow:auto;background:#fffdf9;border-radius:28px 28px 0 0;padding:12px 16px calc(20px + env(safe-area-inset-bottom));transform:translateY(104%);transition:.34s cubic-bezier(.2,.9,.3,1)}.overlay.open .sheet{transform:none}.handle{width:42px;height:5px;border-radius:99px;background:#d7d2ca;margin:0 auto 13px}.sheet h3{font-size:22px;margin:0 0 4px;letter-spacing:-.5px}.sheet .lead{font-size:11.5px;line-height:1.5;color:var(--muted);margin:0 0 13px}.field{margin:10px 0}.field label{display:block;font-size:9px;font-weight:900;color:#75827e;text-transform:uppercase;letter-spacing:.07em;margin:0 0 5px}.field input,.field select,.field textarea{width:100%;border:1px solid #ddd8cf;border-radius:14px;background:#fff;padding:11px;color:#324b44}.field textarea{min-height:80px;resize:vertical}.checks{display:grid;gap:7px}.check{display:flex;gap:9px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:9px 10px;background:#fff;font-size:10.5px}.fakecheck{width:18px;height:18px;border-radius:6px;background:#e8f2ed;border:1px solid #cfe0d8;display:grid;place-items:center;color:#4f7569;font-weight:900}.notice{background:#eef6f2;border:1px solid #dce9e2;border-radius:15px;padding:10px 11px;font-size:10.5px;line-height:1.45;color:#587168}.close{width:100%;border:0;background:#4f7569;color:#fff;border-radius:15px;padding:13px;font-weight:900;margin-top:12px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,30px);background:#25443b;color:#fff;padding:10px 13px;border-radius:999px;font-size:10px;font-weight:850;opacity:0;pointer-events:none;transition:.25s;z-index:90}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:760px){.app{padding:22px 22px 70px}.layout{grid-template-columns:250px 1fr;align-items:start}.side{position:sticky;top:18px}.switch{grid-template-columns:1fr}.nav{grid-template-columns:1fr}.nav button{text-align:left;padding:11px}.nav .ico{display:inline;margin:0 7px 0 0}.kpis{grid-template-columns:repeat(4,1fr)}.cards{grid-template-columns:repeat(2,1fr)}.sheet{border-radius:28px;align-self:center}.overlay{align-items:center}}
+</style>
+</head>
+<body>
+<div class="app">
+ <div class="top"><div class="brand"><div>KINDER’S SCHOOL</div><b>Kinderopolis</b></div><div class="demo">DEMO · dati fittizi</div></div>
+ <section class="hero"><h1>Una scuola, due sedi, un’unica regia.</h1><p>Demo concettuale basata sulle esigenze condivise: gestione multi-sede, ruoli personalizzabili, schede bambino, comunicazioni, documenti, attività quotidiane e contabilità strutturata.</p></section>
+
+ <div class="rolebar" id="roles">
+  <button class="role active" data-role="Direzione">Direzione</button>
+  <button class="role" data-role="Team">Team / Segreteria</button>
+  <button class="role" data-role="Insegnante">Insegnante</button>
+  <button class="role" data-role="Famiglia">Famiglia</button>
+  <button class="role" data-role="Cuoco">Cuoco</button>
+  <button class="role" data-role="Esterno">Insegnante esterno</button>
+ </div>
+
+ <div class="layout">
+  <aside class="side">
+   <div class="switch" id="campuses">
+    <button class="active" data-campus="Tutte">Tutte le sedi</button>
+    <button data-campus="Caltanissetta">Caltanissetta</button>
+    <button data-campus="San Cataldo">San Cataldo</button>
+   </div>
+   <div class="nav" id="nav"></div>
+  </aside>
+  <main class="panel" id="view"></main>
+ </div>
+</div>
+
+<div class="overlay" id="overlay"><div class="sheet"><div class="handle"></div><div id="modal"></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const sections=["Lattanti","Primavera","Prima infanzia","Seconda infanzia","Terza infanzia"];
+const children=[
+ {name:"Emma Romano",campus:"Caltanissetta",section:"Prima infanzia",age:"3 anni",payment:"Regolare",deadline:"15 Ott",privacy:"Completa"},
+ {name:"Gabriele Costa",campus:"Caltanissetta",section:"Lattanti",age:"11 mesi",payment:"Scadenza",deadline:"30 Set",privacy:"Completa"},
+ {name:"Sofia Greco",campus:"San Cataldo",section:"Primavera",age:"2 anni",payment:"Insoluto",deadline:"10 Set",privacy:"Foto da aggiornare"},
+ {name:"Luca Conti",campus:"San Cataldo",section:"Seconda infanzia",age:"4 anni",payment:"Regolare",deadline:"20 Ott",privacy:"Completa"}
+];
+let role="Direzione",campus="Tutte",page="Oggi";
+const rolePages={
+ Direzione:["Oggi","Bambini","Contabilità","Comunicazioni","Sezioni","Gestione"],
+ Team:["Oggi","Bambini","Contabilità","Comunicazioni","Documenti"],
+ Insegnante:["Oggi","Bambini","Comunicazioni","Attività"],
+ Famiglia:["Oggi","Pagamenti","Comunicazioni","Profilo"],
+ Cuoco:["Oggi","Menu","Diete"],
+ Esterno:["Oggi","Attività","Comunicazioni"]
+};
+const icons={Oggi:"⌂",Bambini:"👧",Contabilità:"€",Comunicazioni:"✉️",Sezioni:"▦",Gestione:"⚙️",Documenti:"📄",Attività:"✨",Pagamenti:"€",Profilo:"👤",Menu:"🍽️",Diete:"♥"};
+
+function navRender(){
+ const n=document.getElementById("nav");
+ n.innerHTML=rolePages[role].map(x=>`<button class="${x===page?'active':''}" data-page="${x}"><span class="ico">${icons[x]||"•"}</span>${x}</button>`).join("");
+ n.querySelectorAll("button").forEach(b=>b.onclick=()=>{page=b.dataset.page;navRender();render()});
+}
+function filteredChildren(){return children.filter(c=>campus==="Tutte"||c.campus===campus)}
+function header(title,sub,badge=""){return `<div class="pagehead"><div><h2>${title}</h2><p>${sub}</p></div>${badge?`<span class="pill">${badge}</span>`:""}</div>`}
+function kpi(n,l,cl=""){return `<div class="kpi ${cl}"><div class="n">${n}</div><div class="l">${l}</div></div>`}
+function st(title,right=""){return `<div class="sectiontitle"><b>${title}</b><span>${right}</span></div>`}
+function actionCard(title,sub,tag,onclick,cls=""){return `<div class="card" onclick="${onclick}"><div class="cardtop"><div><div class="ctitle">${title}</div><div class="csub">${sub}</div></div><span class="tag ${cls}">${tag}</span></div></div>`}
+function todayDirection(){
+ const fc=filteredChildren();
+ return header("Dashboard Direzione","Una visione immediata di ciò che richiede attenzione oggi.",campus)+
+ `<div class="kpis">${kpi(fc.length,"Bambini demo")}${kpi("2","Comunicazioni da verificare","warn")}${kpi("3","Scadenze prossime","warn")}${kpi("1","Insoluto","bad")}</div>`+
+ st("Da fare oggi","priorità operative")+
+ `<div class="cards">
+  ${actionCard("Controlla insoluti","Una famiglia presenta un pagamento oltre scadenza.","APRI","openAccounting()","red")}
+  ${actionCard("Pubblica comunicazione","Invia a entrambe le sedi, a una sede, sezione, servizio o singola famiglia.","NUOVA","openCommunication()","blue")}
+  ${actionCard("Scadenze documentali","Contratti, privacy foto/video e documenti prossimi alla scadenza.","3 DA VEDERE","openDocs()","yellow")}
+  ${actionCard("Attività sezioni","Visualizza cosa stanno facendo oggi le varie sezioni.","10 SEZIONI","openSections()","")}
+ </div>`+
+ st("Sedi","stato sintetico")+
+ `<div class="cards">
+  ${actionCard("Caltanissetta","5 sezioni · 42 bambini · 1 scadenza pagamento","OPERATIVA","setCampus('Caltanissetta')")}
+  ${actionCard("San Cataldo","5 sezioni · 38 bambini · 1 insoluto · 2 documenti da aggiornare","ATTENZIONE","setCampus('San Cataldo')","yellow")}
+ </div>`;
+}
+function childrenView(){
+ const list=filteredChildren().map((c,i)=>`<div class="row" onclick="openChild(${children.indexOf(c)})"><div class="who"><div class="avatar">🧒</div><div><b>${c.name}</b><small>${c.campus} · ${c.section} · ${c.age}</small></div></div><span class="status ${c.payment==="Insoluto"?'bad':c.payment==="Scadenza"?'warn':''}">${c.payment}</span></div>`).join("");
+ return header("Schede bambino","Contratto, genitori, privacy, scadenze, servizi e situazione amministrativa.",campus)+
+ `<div class="action"><button class="btn" onclick="toastMsg('Nuova scheda bambino — demo')">+ Nuovo bambino</button><button class="btn secondary" onclick="openDocs()">Scadenziario generale</button></div>`+
+ st("Bambini",filteredChildren().length+" risultati")+`<div class="list">${list}</div>`;
+}
+function accountingView(){
+ return header("Contabilità","Una gestione separata e strutturata per quote scolastiche, servizi, scadenze e insoluti.",campus)+
+ `<div class="kpis">${kpi("€ 7.840","Previsto mese")}${kpi("€ 6.920","Incassato","good")}${kpi("€ 720","Da incassare","warn")}${kpi("€ 200","Insoluto","bad")}</div>`+
+ st("Struttura contabile","demo concettuale")+
+ `<div class="cards">
+  ${actionCard("Pacchetti quota scolastica","Mensile, trimestrale, annuale o configurazione personalizzata.","CONFIGURA","openPackages()")}
+  ${actionCard("Servizi aggiuntivi","Tempo prolungato, mensa, laboratori, trasporto o altri servizi.","GESTISCI","openExtras()")}
+  ${actionCard("Scadenze","Generazione e controllo delle rate associate alle famiglie.","3 PROSSIME","openDeadlines()","yellow")}
+  ${actionCard("Insoluti","Elenco immediato dei pagamenti non regolarizzati.","1 INSOLUTO","openAccounting()","red")}
+ </div>`+
+ st("Situazione famiglie")+
+ `<table class="table"><thead><tr><th>Famiglia</th><th>Voce</th><th>Importo</th><th>Stato</th></tr></thead><tbody>
+ <tr><td>Romano</td><td>Quota Ottobre</td><td>€ 320</td><td>Pagato</td></tr>
+ <tr><td>Costa</td><td>Quota Ottobre</td><td>€ 320</td><td>In scadenza</td></tr>
+ <tr><td>Greco</td><td>Servizio mensa</td><td>€ 200</td><td style="color:#995454;font-weight:900">Insoluto</td></tr>
+ </tbody></table>`;
+}
+function communicationView(){
+ return header("Comunicazioni","Un unico sistema per invii generali o mirati, con presa visione quando richiesta.",campus)+
+ `<div class="action"><button class="btn" onclick="openCommunication()">+ Nuova comunicazione</button></div>`+
+ st("Destinatari possibili")+
+ `<div class="cards">
+  ${actionCard("Generale","Tutte le famiglie e/o tutto il team.","TUTTA LA SCUOLA","openCommunication()")}
+  ${actionCard("Per sede","Solo Caltanissetta o solo San Cataldo.","SEDE","openCommunication()")}
+  ${actionCard("Per servizio o sezione","Ad esempio mensa, Lattanti, Primavera o Terza infanzia.","MIRATA","openCommunication()")}
+  ${actionCard("Individuale","Singola famiglia, singolo utente o situazione specifica.","PRIVATA","openCommunication()")}
+ </div>`+
+ st("Ultimi invii")+
+ `<div class="list">
+ <div class="row"><div class="who"><div class="avatar">📢</div><div><b>Chiusura anticipata venerdì</b><small>Tutte le sedi · urgente · presa visione richiesta</small></div></div><span class="status">64/80 lette</span></div>
+ <div class="row"><div class="who"><div class="avatar">📌</div><div><b>Laboratorio manipolativo</b><small>Caltanissetta · Prima infanzia</small></div></div><span class="status">18/20 lette</span></div>
+ </div>`;
+}
+function sectionsView(){
+ return header("Sedi e sezioni","Due sedi, ciascuna organizzata nelle proprie sezioni.",campus)+
+ st("Caltanissetta")+`<div class="cards">${sections.map(s=>actionCard(s,"Attività, bambini, comunicazioni e diario del giorno.","APRI",`openSection('${s}','Caltanissetta')`)).join("")}</div>`+
+ st("San Cataldo")+`<div class="cards">${sections.map(s=>actionCard(s,"Attività, bambini, comunicazioni e diario del giorno.","APRI",`openSection('${s}','San Cataldo')`)).join("")}</div>`;
+}
+function managementView(){
+ return header("Ruoli e gestione","Kinderopolis non è limitato a tre ruoli: ogni profilo può avere permessi e dashboard propri.")+
+ `<div class="cards">
+ ${actionCard("Direzione","Visione completa di sedi, bambini, contabilità, comunicazioni e configurazione.","ACCESSO TOTALE","")}
+ ${actionCard("Team / Segreteria","Gestione documenti, famiglie, scadenze e contabilità in base ai permessi.","PERSONALIZZABILE","")}
+ ${actionCard("Insegnanti","Operatività quotidiana solo per sedi e sezioni assegnate.","OPERATIVO","")}
+ ${actionCard("Cuoco","Menu, diete e informazioni strettamente necessarie al servizio.","RUOLO DEDICATO","")}
+ ${actionCard("Insegnante esterno","Accesso limitato ai laboratori, attività o sezioni autorizzate.","LIMITATO","")}
+ ${actionCard("Nuovo ruolo","È possibile creare altri profili in base all'organizzazione della scuola.","+ AGGIUNGI","toastMsg('Ruolo personalizzato — demo')","blue")}
+ </div>`;
+}
+function todayTeacher(){
+ return header(role==="Insegnante"?"Dashboard insegnante":"Dashboard "+role,"Solo ciò che serve a questo ruolo durante la giornata.",campus)+
+ `<div class="kpis">${kpi("18","Presenti")}${kpi("2","Assenti")}${kpi("1","Avviso dieta","warn")}${kpi("3","Azioni da completare")}</div>`+
+ st("Oggi")+`<div class="cards">
+ ${actionCard("Presenze","Registra rapidamente presenti e assenti.","DA FARE","toastMsg('Presenze aperte — demo')","yellow")}
+ ${actionCard("Diario del pranzo","Registra come hanno mangiato i bambini.","DA FARE","openLunch()","yellow")}
+ ${actionCard("Attività del giorno","Titolo, obiettivo del laboratorio, partecipanti e note.","APRI","openActivity()")}
+ ${actionCard("Foto e video","Carica contenuti collegati all'attività, nel rispetto delle autorizzazioni.","CARICA","openMedia()")}
+ </div>`;
+}
+function todayFamily(){
+ return header("Oggi di Emma","Tutto ciò che la scuola ha pubblicato per la giornata.","Caltanissetta · Prima infanzia")+
+ `<div class="cards">
+ ${actionCard("Attività di oggi","Laboratorio: Piccoli esploratori","PUBBLICATO","openActivity()")}
+ ${actionCard("Obiettivo","Riconoscere forme e colori attraverso materiali naturali.","VEDI","openActivity()")}
+ ${actionCard("Diario del pranzo","Primo: tutto · Secondo: metà · Frutta: sì","AGGIORNATO","openLunch()")}
+ ${actionCard("Comunicazione personale","Ricordiamo la scadenza della quota di ottobre.","NUOVA","openFamilyMessage()","yellow")}
+ </div>`;
+}
+function familyPayments(){return header("Pagamenti","Scadenze e situazione della propria famiglia.")+
+ `<div class="kpis">${kpi("€ 320","Prossima quota")}${kpi("15 Ott","Scadenza")}${kpi("0","Insoluti","good")}${kpi("2","Ricevute")}</div>`+
+ st("Movimenti")+`<div class="list"><div class="row"><div class="who"><div class="avatar">€</div><div><b>Quota settembre</b><small>€ 320 · pagata il 05/09</small></div></div><span class="status">Pagato</span></div><div class="row"><div class="who"><div class="avatar">€</div><div><b>Quota ottobre</b><small>€ 320 · scadenza 15/10</small></div></div><span class="status warn">Da pagare</span></div></div>`;
+}
+function profileFamily(){return header("Profilo di Emma","Dati personali, contratto, genitori, autorizzazioni e documenti.")+
+ `<div class="cards">${actionCard("Contratto","Anno educativo 2026/27 · documento presente","OK","openChild(0)")}${actionCard("Genitori / tutori","2 contatti registrati","COMPLETO","openChild(0)")}${actionCard("Privacy foto e video","Autorizzazione registrata","VALIDA","openChild(0)")}${actionCard("Documenti e scadenze","1 documento con scadenza futura","APRI","openChild(0)")}</div>`;
+}
+function kitchenToday(){return header(role==="Cuoco"?"Dashboard cuoco":"Dashboard insegnante esterno","Vista ridotta alle informazioni necessarie al proprio incarico.",campus)+
+ `<div class="cards">${role==="Cuoco"?
+ actionCard("Menu del giorno","Pasta al pomodoro · pollo · verdure · frutta","PUBBLICATO","openLunch()")+
+ actionCard("Diete da attenzionare","2 bambini con indicazioni alimentari nella sede selezionata.","2 ALERT","openDiets()","red"):
+ actionCard("Laboratorio di oggi","Psicomotricità · Seconda infanzia · 10:30","PROGRAMMATO","openActivity()")+
+ actionCard("Bambini autorizzati","Puoi vedere solo i partecipanti assegnati al laboratorio.","12 BAMBINI","toastMsg('Elenco partecipanti — demo')")}
+ </div>`;
+}
+function genericPage(){
+ if(page==="Bambini") return childrenView();
+ if(page==="Contabilità") return accountingView();
+ if(page==="Comunicazioni") return communicationView();
+ if(page==="Sezioni") return sectionsView();
+ if(page==="Gestione") return managementView();
+ if(page==="Pagamenti") return familyPayments();
+ if(page==="Profilo") return profileFamily();
+ if(page==="Menu"||page==="Diete") return kitchenToday();
+ if(page==="Attività") return todayTeacher();
+ if(page==="Documenti") return childrenView();
+ return "";
+}
+function render(){
+ if(page==="Oggi"){
+  if(role==="Direzione"||role==="Team") view.innerHTML=todayDirection();
+  else if(role==="Famiglia") view.innerHTML=todayFamily();
+  else if(role==="Cuoco"||role==="Esterno") view.innerHTML=kitchenToday();
+  else view.innerHTML=todayTeacher();
+ }else view.innerHTML=genericPage();
+}
+function setCampus(c){
+ campus=c;
+ document.querySelectorAll("#campuses button").forEach(b=>b.classList.toggle("active",b.dataset.campus===c));
+ render();
+}
+document.querySelectorAll("#roles .role").forEach(b=>b.onclick=()=>{
+ role=b.dataset.role;page="Oggi";
+ document.querySelectorAll("#roles .role").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+ navRender();render();
+});
+document.querySelectorAll("#campuses button").forEach(b=>b.onclick=()=>setCampus(b.dataset.campus));
+function showModal(html){modal.innerHTML=html;overlay.classList.add("open");document.body.style.overflow="hidden"}
+function closeModal(){overlay.classList.remove("open");document.body.style.overflow=""}
+overlay.onclick=e=>{if(e.target===overlay)closeModal()};
+function toastMsg(t){toast.textContent=t;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),1800)}
+function modalHead(t,p){return `<h3>${t}</h3><p class="lead">${p}</p>`}
+function done(label="Chiudi"){return `<button class="close" onclick="closeModal()">${label}</button>`}
+function openChild(i){
+ const c=children[i];
+ showModal(modalHead(c.name,c.campus+" · "+c.section+" · "+c.age)+
+ `<div class="checks">
+ <div class="check"><span class="fakecheck">✓</span><div><b>Contratto</b><br>Anno educativo 2026/27 · firmato</div></div>
+ <div class="check"><span class="fakecheck">✓</span><div><b>Genitori / tutori</b><br>2 contatti registrati</div></div>
+ <div class="check"><span class="fakecheck">✓</span><div><b>Privacy</b><br>Foto: sì · Video: sì · Comunicazioni: sì</div></div>
+ <div class="check"><span class="fakecheck">↗</span><div><b>Scadenziario</b><br>Prossima scadenza: ${c.deadline}</div></div>
+ <div class="check"><span class="fakecheck">€</span><div><b>Situazione amministrativa</b><br>${c.payment}</div></div>
+ </div>`+done());
+}
+function openCommunication(){
+ showModal(modalHead("Nuova comunicazione","Un solo flusso, con destinatari selezionabili e presa visione opzionale.")+
+ `<div class="field"><label>Titolo</label><input value="Comunicazione di prova"></div>
+ <div class="field"><label>Destinatari</label><select><option>Tutta la scuola</option><option>Singola sede</option><option>Servizio</option><option>Sezione</option><option>Singola famiglia / persona</option></select></div>
+ <div class="field"><label>Tipo</label><select><option>Comunicazione ordinaria</option><option>Avviso urgente</option></select></div>
+ <div class="field"><label>Messaggio</label><textarea>Inserisci qui il testo della comunicazione...</textarea></div>
+ <div class="check"><span class="fakecheck">✓</span><div><b>Richiedi presa visione</b><br>La Direzione potrà controllare chi ha confermato.</div></div>
+ <button class="close" onclick="toastMsg('Comunicazione pubblicata — simulazione');closeModal()">Pubblica comunicazione</button>`);
+}
+function openAccounting(){showModal(modalHead("Dettaglio insoluto","Esempio di come la Direzione potrebbe gestire una posizione amministrativa.")+
+ `<div class="notice"><b>Famiglia Greco</b><br>Servizio mensa · € 200 · scadenza 10 settembre · stato: insoluto</div>
+ <div class="action"><button class="btn" onclick="toastMsg('Promemoria inviato')">Invia promemoria</button><button class="btn secondary" onclick="toastMsg('Pagamento registrato')">Registra pagamento</button></div>`+done())}
+function openPackages(){showModal(modalHead("Pacchetti quota scolastica","La logica definitiva verrà definita con Vera durante l'approfondimento della contabilità.")+
+ `<div class="checks"><div class="check"><span class="fakecheck">M</span>Quota mensile</div><div class="check"><span class="fakecheck">T</span>Quota trimestrale</div><div class="check"><span class="fakecheck">A</span>Quota annuale</div><div class="check"><span class="fakecheck">+</span>Pacchetto personalizzato</div></div>`+done())}
+function openExtras(){showModal(modalHead("Servizi aggiuntivi","Ogni servizio può avere costo, durata, frequenza e destinatari propri.")+
+ `<div class="checks"><div class="check"><span class="fakecheck">✓</span>Mensa</div><div class="check"><span class="fakecheck">✓</span>Tempo prolungato</div><div class="check"><span class="fakecheck">✓</span>Laboratori</div><div class="check"><span class="fakecheck">+</span>Altro servizio configurabile</div></div>`+done())}
+function openDeadlines(){showModal(modalHead("Scadenze","Vista trasversale delle scadenze economiche e documentali.")+
+ `<div class="list"><div class="row"><div class="who"><div class="avatar">€</div><div><b>Quota ottobre</b><small>18 famiglie · 15 ottobre</small></div></div><span class="status warn">Prossima</span></div><div class="row"><div class="who"><div class="avatar">📄</div><div><b>Privacy foto</b><small>2 autorizzazioni da aggiornare</small></div></div><span class="status warn">Da vedere</span></div></div>`+done())}
+function openDocs(){showModal(modalHead("Scadenziario","Contratti, documenti e autorizzazioni in un'unica vista.")+
+ `<div class="list"><div class="row"><div class="who"><div class="avatar">📄</div><div><b>Sofia Greco</b><small>Autorizzazione foto da aggiornare</small></div></div><span class="status warn">Attenzione</span></div><div class="row"><div class="who"><div class="avatar">📄</div><div><b>2 contratti</b><small>Verifica documentazione entro fine mese</small></div></div><span class="status">Prossimi</span></div></div>`+done())}
+function openSections(){page="Sezioni";navRender();render()}
+function openSection(s,c){showModal(modalHead(c+" · "+s,"La sezione vede e gestisce ciò che riguarda la propria giornata.")+
+ `<div class="cards">${actionCard("Attività di oggi","Laboratorio creativo","PUBBLICATA","")}${actionCard("Obiettivo laboratorio","Sviluppare coordinazione e riconoscimento dei colori","DEFINITO","")}${actionCard("Foto / video","4 contenuti caricati","MEDIA","")}${actionCard("Diario del pranzo","18/20 compilati","QUASI COMPLETO","")}</div>`+done())}
+function openActivity(){showModal(modalHead("Attività del giorno","Esempio di scheda attività condivisibile con le famiglie.")+
+ `<div class="field"><label>Titolo</label><input value="Piccoli esploratori"></div><div class="field"><label>Obiettivo del laboratorio</label><textarea>Riconoscere forme, colori e consistenze attraverso materiali naturali.</textarea></div><div class="field"><label>Nota per le famiglie</label><textarea>Oggi i bambini hanno lavorato in piccoli gruppi.</textarea></div>`+done())}
+function openLunch(){showModal(modalHead("Diario del pranzo","Una compilazione rapida, pensata per la sezione e visibile alla famiglia.")+
+ `<div class="checks"><div class="check"><span class="fakecheck">✓</span>Primo: tutto</div><div class="check"><span class="fakecheck">½</span>Secondo: metà</div><div class="check"><span class="fakecheck">✓</span>Contorno: assaggiato</div><div class="check"><span class="fakecheck">✓</span>Frutta: sì</div></div>`+done())}
+function openMedia(){showModal(modalHead("Foto e video","Demo del flusso: nella versione reale i contenuti saranno collegati alle autorizzazioni privacy.")+
+ `<div class="notice">📷 Tocca per selezionare foto o video<br><br><b>Controllo previsto:</b> prima della condivisione il sistema può verificare i bambini e le autorizzazioni registrate.</div><button class="close" onclick="toastMsg('Caricamento simulato');closeModal()">Simula caricamento</button>`)}
+function openFamilyMessage(){showModal(modalHead("Comunicazione personale","Visibile esclusivamente alla famiglia interessata.")+
+ `<div class="notice"><b>Promemoria quota ottobre</b><br>Ricordiamo che la prossima scadenza è prevista per il 15 ottobre.</div><div class="check"><span class="fakecheck">✓</span>Presa visione confermata</div>`+done())}
+function openDiets(){showModal(modalHead("Diete e indicazioni alimentari","Il cuoco visualizza solo le informazioni necessarie alla preparazione e al servizio.")+
+ `<div class="list"><div class="row"><div class="who"><div class="avatar">⚠️</div><div><b>Bambino A</b><small>Intolleranza al lattosio</small></div></div><span class="status bad">Attenzione</span></div><div class="row"><div class="who"><div class="avatar">⚠️</div><div><b>Bambino B</b><small>Dieta temporanea</small></div></div><span class="status warn">Temporanea</span></div></div>`+done())}
+navRender();render();
+</script>
+</body>
+</html>
