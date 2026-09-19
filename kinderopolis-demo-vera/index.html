@@ -79,7 +79,7 @@ const rolePages={
  Cuoco:["Oggi","Menu","Diete"],
  Esterno:["Oggi","Attività","Comunicazioni"]
 };
-const icons={Oggi:"⌂",Bambini:"👧",Contabilità:"€",Comunicazioni:"✉️",Sezioni:"▦",Gestione:"⚙️",Documenti:"📄",Attività:"✨",Pagamenti:"€",Profilo:"👤",Menu:"🍽️",Diete:"♥"};
+const icons={Oggi:"⌂",Bambini:"👧",Contabilità:"€",Comunicazioni:"✉️",Sezioni:"▦",Gestione:"⚙️",Documenti:"📄",Attività:"✨",Pagamenti:"€",Profilo:"👤",Menu:"🍽️",Diete:"♥"};\nconst viewEl=document.getElementById("view"), overlayEl=document.getElementById("overlay"), modalEl=document.getElementById("modal"), toastEl=document.getElementById("toast");
 
 function navRender(){
  const n=document.getElementById("nav");
@@ -212,11 +212,11 @@ function genericPage(){
 }
 function render(){
  if(page==="Oggi"){
-  if(role==="Direzione"||role==="Team") view.innerHTML=todayDirection();
-  else if(role==="Famiglia") view.innerHTML=todayFamily();
-  else if(role==="Cuoco"||role==="Esterno") view.innerHTML=kitchenToday();
-  else view.innerHTML=todayTeacher();
- }else view.innerHTML=genericPage();
+  if(role==="Direzione"||role==="Team") viewEl.innerHTML=todayDirection();
+  else if(role==="Famiglia") viewEl.innerHTML=todayFamily();
+  else if(role==="Cuoco"||role==="Esterno") viewEl.innerHTML=kitchenToday();
+  else viewEl.innerHTML=todayTeacher();
+ }else viewEl.innerHTML=genericPage();
 }
 function setCampus(c){
  campus=c;
@@ -229,10 +229,10 @@ document.querySelectorAll("#roles .role").forEach(b=>b.onclick=()=>{
  navRender();render();
 });
 document.querySelectorAll("#campuses button").forEach(b=>b.onclick=()=>setCampus(b.dataset.campus));
-function showModal(html){modal.innerHTML=html;overlay.classList.add("open");document.body.style.overflow="hidden"}
-function closeModal(){overlay.classList.remove("open");document.body.style.overflow=""}
-overlay.onclick=e=>{if(e.target===overlay)closeModal()};
-function toastMsg(t){toast.textContent=t;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),1800)}
+function showModal(html){modalEl.innerHTML=html;overlayEl.classList.add("open");document.body.style.overflow="hidden"}
+function closeModal(){overlayEl.classList.remove("open");document.body.style.overflow=""}
+overlayEl.onclick=e=>{if(e.target===overlayEl)closeModal()};
+function toastMsg(t){toastEl.textContent=t;toastEl.classList.add("show");setTimeout(()=>toastEl.classList.remove("show"),1800)}
 function modalHead(t,p){return `<h3>${t}</h3><p class="lead">${p}</p>`}
 function done(label="Chiudi"){return `<button class="close" onclick="closeModal()">${label}</button>`}
 function openChild(i){
