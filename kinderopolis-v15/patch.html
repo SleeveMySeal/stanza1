@@ -1,0 +1,235 @@
+<style id="v15-css">
+:root{--v15-ink:#29443e;--v15-muted:#74807c;--v15-line:#e1e5e1;--v15-green:#e7f3ec;--v15-blue:#e9f4fb;--v15-yellow:#fff3d1;--v15-red:#fde9e7;--v15-lilac:#eee9fa;--v15-peach:#ffeadf}
+.v15-campusbar{display:flex;gap:7px;overflow:auto;margin:0 0 12px;padding-bottom:2px}.v15-campusbar button{white-space:nowrap;border:1px solid var(--v15-line);background:#fff;border-radius:999px;padding:8px 10px;font-size:9px;font-weight:950;color:#687772}.v15-campusbar button.active{background:#55776a;color:#fff;border-color:#55776a}
+.v15-head{margin:4px 0 12px}.v15-head h2{font-size:25px;line-height:1.08;letter-spacing:-.7px;margin:0;color:var(--v15-ink)}.v15-head p{font-size:10px;color:var(--v15-muted);line-height:1.45;margin:5px 0 0}
+.v15-kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px}.v15-kpi{padding:12px;border:1px solid var(--v15-line);border-radius:18px;background:#fff}.v15-kpi.good{background:#edf7f1}.v15-kpi.warn{background:#fff8e7}.v15-kpi.bad{background:#fff0ee}.v15-kpi b{display:block;font-size:22px;letter-spacing:-.6px}.v15-kpi span{display:block;margin-top:2px;font-size:9px;color:#74817c;line-height:1.3}
+.v15-sectiontitle{display:flex;align-items:end;justify-content:space-between;margin:16px 1px 8px}.v15-sectiontitle b{font-size:12px;color:#435b54}.v15-sectiontitle span{font-size:8px;color:#89938f}
+.v15-grid{display:grid;gap:9px}.v15-card{display:grid;grid-template-columns:46px 1fr auto;gap:10px;align-items:center;padding:11px;border:1px solid var(--v15-line);border-radius:18px;background:#fff}.v15-card .ic{width:46px;height:46px;border-radius:14px;background:#eef4f1;display:grid;place-items:center;font-size:22px}.v15-card.warn .ic{background:var(--v15-yellow)}.v15-card.bad .ic{background:var(--v15-red)}.v15-card.blue .ic{background:var(--v15-blue)}.v15-card.lilac .ic{background:var(--v15-lilac)}.v15-card.peach .ic{background:var(--v15-peach)}.v15-card b{display:block;font-size:12px;color:#314a43}.v15-card span{display:block;font-size:9px;color:#77837f;line-height:1.35;margin-top:2px}.v15-card button{border:0;background:#edf3f0;color:#506b62;border-radius:10px;padding:7px 8px;font-size:9px;font-weight:950}
+.v15-campus{padding:13px;border:1px solid var(--v15-line);border-radius:20px;background:linear-gradient(135deg,#fff,#f6fbf8)}.v15-campushead{display:flex;justify-content:space-between;gap:10px;align-items:center}.v15-campushead b{font-size:14px}.v15-campushead span{font-size:8px;font-weight:950;padding:5px 7px;border-radius:999px;background:#e8f3ed;color:#4e6c61}.v15-campusmeta{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:9px}.v15-campusmeta div{padding:8px;border-radius:12px;background:#f3f5f4}.v15-campusmeta b{display:block;font-size:12px}.v15-campusmeta span{font-size:8px;color:#78827f}
+.v15-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.v15-action{border:1px solid var(--v15-line);background:#fff;border-radius:18px;padding:12px;text-align:left}.v15-action .ic{font-size:22px}.v15-action b{display:block;font-size:11px;margin-top:7px}.v15-action span{display:block;font-size:9px;color:#7b8582;line-height:1.35;margin-top:2px}
+.v15-list{display:grid;gap:8px}.v15-row{display:grid;grid-template-columns:42px 1fr auto;gap:9px;align-items:center;padding:10px;border:1px solid var(--v15-line);border-radius:16px;background:#fff}.v15-row .ic{width:42px;height:42px;border-radius:13px;background:#eef4f1;display:grid;place-items:center;font-size:20px}.v15-row b{font-size:11px}.v15-row span{display:block;font-size:8.5px;color:#7a8581;line-height:1.35;margin-top:2px}.v15-badge{display:inline-flex!important;width:max-content;padding:5px 7px;border-radius:999px;background:#eaf4ef;color:#4e6a60;font-size:8px!important;font-weight:950}.v15-badge.warn{background:#fff2ca;color:#7b6126}.v15-badge.bad{background:#fde8e5;color:#97554f}
+.v15-commfilters{display:flex;gap:6px;overflow:auto;margin:8px 0 10px}.v15-chip{white-space:nowrap;border:1px solid var(--v15-line);background:#fff;border-radius:999px;padding:7px 9px;font-size:8px;font-weight:900;color:#61706b}
+.v15-money{display:grid;grid-template-columns:1fr 1fr;gap:8px}.v15-moneycard{padding:12px;border-radius:17px;border:1px solid var(--v15-line);background:#fff}.v15-moneycard small{display:block;font-size:8px;color:#828c88;font-weight:900;text-transform:uppercase;letter-spacing:.06em}.v15-moneycard b{display:block;font-size:18px;margin-top:3px}.v15-moneycard span{font-size:8px;color:#78837f}
+.v15-rolegrid{display:grid;gap:8px}.v15-role{display:grid;grid-template-columns:44px 1fr auto;gap:9px;align-items:center;padding:10px;border:1px solid var(--v15-line);border-radius:16px;background:#fff}.v15-role .ic{width:44px;height:44px;border-radius:13px;background:#f0f4f2;display:grid;place-items:center;font-size:20px}.v15-role b{font-size:11px}.v15-role span{display:block;font-size:8.5px;color:#78837f;margin-top:2px;line-height:1.35}.v15-role button{border:0;background:#edf3f0;color:#506b62;border-radius:10px;padding:7px 8px;font-size:8px;font-weight:950}
+.v15-info{padding:10px 11px;border-radius:15px;background:#eef6f2;color:#536f65;font-size:9px;line-height:1.45;margin-top:10px}.v15-note{padding:10px 11px;border-radius:15px;background:#fff7df;color:#76622e;font-size:9px;line-height:1.45;margin-top:10px}
+.v15-sectiongrid{display:grid;gap:8px}.v15-sec{display:grid;grid-template-columns:44px 1fr auto;gap:9px;align-items:center;padding:10px;border:1px solid var(--v15-line);border-radius:16px;background:#fff}.v15-sec .ic{width:44px;height:44px;border-radius:13px;background:#eef4f1;display:grid;place-items:center;font-size:21px}.v15-sec small{display:block;font-size:8px;color:#89928f;font-weight:900}.v15-sec b{font-size:11px}.v15-sec span{display:block;font-size:8.5px;color:#77827f;margin-top:2px}.v15-sec button{border:0;background:#edf3f0;color:#506b62;border-radius:10px;padding:7px 8px;font-size:8px;font-weight:950}
+@media(min-width:720px){.v15-kpis{grid-template-columns:repeat(4,1fr)}.v15-grid{grid-template-columns:1fr 1fr}.v15-actions{grid-template-columns:repeat(4,1fr)}.v15-money{grid-template-columns:repeat(4,1fr)}}
+</style>
+<script id="v15-js">
+const V15_MARK='kinderopolis_v15_vera';
+if(!state.v15){
+  state.v15={
+    campusFilter:'all',
+    campuses:[
+      {id:'cl',name:'Caltanissetta',kids:42,staff:9},
+      {id:'sc',name:'San Cataldo',kids:38,staff:8}
+    ],
+    sections:[
+      {id:'cl-lattanti',campus:'cl',stage:'Sezione lattanti',name:'Topini',icon:'🐭',kids:8},
+      {id:'cl-primavera',campus:'cl',stage:'Sezione primavera',name:'Topini',icon:'🐭',kids:9},
+      {id:'cl-prima',campus:'cl',stage:'Sezione prima infanzia',name:'Volpini',icon:'🦊',kids:9},
+      {id:'cl-seconda',campus:'cl',stage:'Sezione seconda infanzia',name:'Serpentini',icon:'🐍',kids:8},
+      {id:'cl-terza',campus:'cl',stage:'Sezione terza infanzia',name:'Coniglietti poliziotti',icon:'🐰',kids:8},
+      {id:'sc-lattanti',campus:'sc',stage:'Sezione lattanti',name:'Topini',icon:'🐭',kids:7},
+      {id:'sc-primavera',campus:'sc',stage:'Sezione primavera',name:'Topini',icon:'🐭',kids:8},
+      {id:'sc-prima',campus:'sc',stage:'Sezione prima infanzia',name:'Volpini',icon:'🦊',kids:8},
+      {id:'sc-seconda',campus:'sc',stage:'Sezione seconda infanzia',name:'Serpentini',icon:'🐍',kids:8},
+      {id:'sc-terza',campus:'sc',stage:'Sezione terza infanzia',name:'Coniglietti poliziotti',icon:'🐰',kids:7}
+    ],
+    children:[
+      {id:'emma',name:'Emma Bianchi',campus:'cl',section:'cl-prima',age:'3 anni',contract:'Attivo · 2026/27',parents:'2 genitori registrati',photo:'Autorizzata',video:'Autorizzato',deadline:'Quota 15 ottobre',payment:'Regolare'},
+      {id:'gabri',name:'Gabriele Costa',campus:'cl',section:'cl-lattanti',age:'11 mesi',contract:'Attivo · 2026/27',parents:'2 genitori registrati',photo:'Autorizzata',video:'Autorizzato',deadline:'Quota 30 settembre',payment:'In scadenza'},
+      {id:'sofia',name:'Sofia Greco',campus:'sc',section:'sc-primavera',age:'2 anni',contract:'Attivo · 2026/27',parents:'1 genitore + 1 tutore',photo:'Da aggiornare',video:'Non autorizzato',deadline:'Servizio mensa 10 settembre',payment:'Insoluto'},
+      {id:'luca',name:'Luca Conti',campus:'sc',section:'sc-seconda',age:'4 anni',contract:'Attivo · 2026/27',parents:'2 genitori registrati',photo:'Autorizzata',video:'Autorizzato',deadline:'Quota 20 ottobre',payment:'Regolare'}
+    ],
+    accounting:{
+      expected:7840,paid:6920,due:720,overdue:200,
+      packages:[
+        {name:'Quota scolastica mensile',amount:'€ 320',active:61},
+        {name:'Pacchetto trimestrale',amount:'€ 900',active:12},
+        {name:'Formula annuale',amount:'Personalizzata',active:7}
+      ],
+      extras:[
+        {name:'Mensa',amount:'€ 120/mese',active:43},
+        {name:'Tempo prolungato',amount:'€ 80/mese',active:21},
+        {name:'Laboratorio esterno',amount:'€ 35',active:18}
+      ]
+    },
+    roles:[
+      {name:'Direzione',icon:'🏫',desc:'Visione completa di entrambe le sedi.'},
+      {name:'Team / Segreteria',icon:'🗂️',desc:'Documenti, famiglie, scadenze e amministrazione.'},
+      {name:'Insegnante',icon:'👩‍🏫',desc:'Operatività della propria sezione.'},
+      {name:'Famiglia',icon:'👨‍👩‍👧',desc:'Solo dati e comunicazioni del proprio bambino.'},
+      {name:'Cuoco',icon:'👨‍🍳',desc:'Menu e sole indicazioni alimentari necessarie.'},
+      {name:'Insegnante esterno',icon:'🎨',desc:'Solo attività, laboratori e partecipanti assegnati.'}
+    ],
+    communications:[
+      {id:'c1',title:'Chiusura anticipata venerdì',target:'Tutta la scuola',urgent:true,ack:true,read:'64/80'},
+      {id:'c2',title:'Laboratorio manipolativo',target:'Caltanissetta · Prima infanzia',urgent:false,ack:true,read:'18/20'},
+      {id:'c3',title:'Promemoria quota ottobre',target:'Famiglia Bianchi',urgent:false,ack:false,read:'1/1'}
+    ]
+  };
+}
+if(!state.v15.campusFilter)state.v15.campusFilter='all';
+localStorage.setItem(V15_MARK,'1');persist();
+
+function v15CampusName(id){return id==='cl'?'Caltanissetta':id==='sc'?'San Cataldo':'Tutte le sedi'}
+function v15Sections(campus){return (state.v15.sections||[]).filter(s=>campus==='all'||s.campus===campus)}
+function v15Kids(campus){if(campus==='all')return (state.v15.campuses||[]).reduce((a,c)=>a+(c.kids||0),0);const c=(state.v15.campuses||[]).find(x=>x.id===campus);return c?.kids||0}
+function v15CampusBar(){const f=state.v15.campusFilter;return '<div class="v15-campusbar">'+[['all','Tutte le sedi'],['cl','Caltanissetta'],['sc','San Cataldo']].map(x=>'<button class="'+(f===x[0]?'active':'')+'" onclick="v15SetCampus(\''+x[0]+'\')">'+x[1]+'</button>').join('')+'</div>'}
+function v15SetCampus(id){state.v15.campusFilter=id;persist();render()}
+function v15Title(t,p){return '<div class="v15-head"><h2>'+t+'</h2><p>'+p+'</p></div>'}
+function v15SectionTitle(t,r=''){return '<div class="v15-sectiontitle"><b>'+t+'</b><span>'+r+'</span></div>'}
+function v15Kpi(n,l,c=''){return '<div class="v15-kpi '+c+'"><b>'+n+'</b><span>'+l+'</span></div>'}
+function v15DirectorDashboard(){
+  const f=state.v15.campusFilter,k=v15Kids(f),sec=v15Sections(f).length;
+  return v11Banner('director')+v15CampusBar()+v15Title('Dashboard generale','Una visione immediata della scuola, con filtro per sede e accesso rapido alle attività da gestire.')+
+  '<div class="v15-kpis">'+v15Kpi(k,'Bambini nella selezione')+v15Kpi(sec,'Sezioni attive','good')+v15Kpi('3','Scadenze da controllare','warn')+v15Kpi('1','Insoluto da gestire','bad')+'</div>'+
+  v15SectionTitle('Priorità di oggi','aggiornamento demo')+
+  '<div class="v15-grid">'+
+    '<div class="v15-card bad"><div class="ic">€</div><div><b>Controlla insoluti</b><span>Una posizione amministrativa risulta oltre scadenza.</span></div><button onclick="go(\'payments\')">Apri</button></div>'+
+    '<div class="v15-card blue"><div class="ic">📣</div><div><b>Comunicazioni</b><span>Generali, per sede, servizio, sezione o individuali.</span></div><button onclick="go(\'messages\')">Apri</button></div>'+
+    '<div class="v15-card warn"><div class="ic">📄</div><div><b>Scadenze documentali</b><span>Privacy foto/video, contratti e documenti da aggiornare.</span></div><button onclick="v15OpenChildren()">Vedi</button></div>'+
+    '<div class="v15-card lilac"><div class="ic">👥</div><div><b>Ruoli e permessi</b><span>Direzione, team, cuoco, esterni e altri profili personalizzabili.</span></div><button onclick="v15OpenRoles()">Vedi</button></div>'+
+  '</div>'+
+  v15SectionTitle('Sedi','2 sedi operative')+
+  '<div class="v15-grid">'+state.v15.campuses.map(c=>{
+    const over=c.id==='sc'?1:0;return '<div class="v15-campus"><div class="v15-campushead"><b>🏫 '+esc(c.name)+'</b><span>'+(over?'ATTENZIONE':'OPERATIVA')+'</span></div><div class="v15-campusmeta"><div><b>'+c.kids+'</b><span>bambini</span></div><div><b>5</b><span>sezioni</span></div><div><b>'+c.staff+'</b><span>team</span></div></div><button class="btn soft full" style="margin-top:9px" onclick="v15SetCampus(\''+c.id+'\');go(\'classes\')">Apri sede</button></div>'
+  }).join('')+'</div>'+
+  v15SectionTitle('Accessi rapidi')+
+  '<div class="v15-actions"><button class="v15-action" onclick="v15OpenChildren()"><div class="ic">🧒</div><b>Schede bambino</b><span>Contratto, genitori, privacy, scadenze e stato pagamenti.</span></button><button class="v15-action" onclick="go(\'profile\')"><div class="ic">✏️</div><b>Centro contenuti</b><span>Programma, menu, attività e promemoria per le famiglie.</span></button><button class="v15-action" onclick="go(\'payments\')"><div class="ic">💳</div><b>Contabilità</b><span>Pacchetti, servizi, scadenze, pagamenti e insoluti.</span></button><button class="v15-action" onclick="v15OpenRoles()"><div class="ic">🔐</div><b>Ruoli</b><span>Dashboard e permessi diversi per ogni figura.</span></button></div>';
+}
+function v15DirectorClasses(){
+  const f=state.v15.campusFilter;
+  let campuses=f==='all'?state.v15.campuses:state.v15.campuses.filter(c=>c.id===f);
+  return v11Banner('director')+v15CampusBar()+v15Title('Sedi e sezioni','Kinder’s School può gestire entrambe le sedi dallo stesso applicativo, mantenendo sezioni e utenti separati.')+
+  campuses.map(c=>v15SectionTitle('🏫 '+c.name,'5 sezioni')+'<div class="v15-sectiongrid">'+v15Sections(c.id).map(s=>'<div class="v15-sec"><div class="ic">'+esc(s.icon)+'</div><div><small>'+esc(s.stage).toUpperCase()+'</small><b>'+esc(s.name)+'</b><span>'+s.kids+' bambini · attività e diario del giorno</span></div><button onclick="v15OpenSection(\''+escAttr(s.id)+'\')">Apri</button></div>').join('')+'</div>').join('')+
+  '<div class="v15-info">Ogni sede può avere le proprie sezioni, team, orari e configurazioni. La Direzione mantiene comunque una visione generale unica.</div>';
+}
+function v15AccountingPage(){
+  const a=state.v15.accounting;
+  return v11Banner('director')+v15CampusBar()+v15Title('Contabilità','Demo strutturata di pacchetti quota scolastica, servizi aggiuntivi, scadenze, pagamenti e insoluti.')+
+  '<div class="v15-money">'+
+    '<div class="v15-moneycard"><small>Previsto mese</small><b>€ '+a.expected.toLocaleString('it-IT')+'</b><span>quote + servizi</span></div>'+
+    '<div class="v15-moneycard"><small>Incassato</small><b>€ '+a.paid.toLocaleString('it-IT')+'</b><span>registrato</span></div>'+
+    '<div class="v15-moneycard"><small>Da incassare</small><b>€ '+a.due.toLocaleString('it-IT')+'</b><span>non ancora scaduto</span></div>'+
+    '<div class="v15-moneycard"><small>Insoluto</small><b>€ '+a.overdue.toLocaleString('it-IT')+'</b><span>oltre scadenza</span></div>'+
+  '</div>'+
+  v15SectionTitle('Struttura contabile','da definire insieme nel dettaglio')+
+  '<div class="v15-grid">'+
+    '<div class="v15-card"><div class="ic">📦</div><div><b>Pacchetti quota scolastica</b><span>Mensile, trimestrale, annuale o formule personalizzate.</span></div><button onclick="v15OpenPackages()">Apri</button></div>'+
+    '<div class="v15-card blue"><div class="ic">➕</div><div><b>Servizi aggiuntivi</b><span>Mensa, prolungato, laboratori e altri servizi configurabili.</span></div><button onclick="v15OpenExtras()">Apri</button></div>'+
+    '<div class="v15-card warn"><div class="ic">📅</div><div><b>Scadenze</b><span>Rate e scadenziario per famiglia, servizio e sede.</span></div><button onclick="v15OpenDeadlines()">Vedi</button></div>'+
+    '<div class="v15-card bad"><div class="ic">!</div><div><b>Insoluti</b><span>Posizioni non regolarizzate con promemoria e storico.</span></div><button onclick="v15OpenOverdue()">Vedi</button></div>'+
+  '</div>'+
+  v15SectionTitle('Situazione famiglie')+
+  '<div class="v15-list"><div class="v15-row"><div class="ic">👨‍👩‍👧</div><div><b>Famiglia Bianchi</b><span>Quota ottobre · € 320 · scadenza 15/10</span></div><span class="v15-badge">Regolare</span></div><div class="v15-row"><div class="ic">👨‍👩‍👦</div><div><b>Famiglia Costa</b><span>Quota settembre · € 320 · scadenza 30/09</span></div><span class="v15-badge warn">In scadenza</span></div><div class="v15-row"><div class="ic">👨‍👩‍👧</div><div><b>Famiglia Greco</b><span>Servizio mensa · € 200 · scadenza 10/09</span></div><span class="v15-badge bad">Insoluto</span></div></div>'+
+  '<div class="v15-note"><b>Da chiarire con Vera:</b> registrazione interna dei pagamenti oppure anche pagamento diretto dall’applicativo, modalità di riconciliazione, ricevute e gestione contabile desiderata.</div>';
+}
+function v15MessagesPage(){
+  return v11Banner('director')+v15CampusBar()+v15Title('Comunicazioni','Invia messaggi generali o mirati. La presa visione può essere richiesta quando serve.')+
+  '<button class="btn primary full" onclick="v15OpenNewCommunication()">＋ Nuova comunicazione</button>'+
+  '<div class="v15-commfilters"><span class="v15-chip">Tutta la scuola</span><span class="v15-chip">Singola sede</span><span class="v15-chip">Servizio</span><span class="v15-chip">Sezione</span><span class="v15-chip">Individuale</span><span class="v15-chip">Urgente</span></div>'+
+  '<div class="v15-list">'+(state.v15.communications||[]).map(c=>'<div class="v15-row"><div class="ic">'+(c.urgent?'🚨':'📣')+'</div><div><b>'+esc(c.title)+'</b><span>'+esc(c.target)+(c.ack?' · presa visione richiesta':'')+'</span></div><span class="v15-badge '+(c.urgent?'bad':'')+'">'+esc(c.read)+'</span></div>').join('')+'</div>'+
+  '<div class="v15-info">Le comunicazioni possono essere rivolte a tutta la scuola, una sede, un servizio, una sezione o una singola famiglia/persona. Gli avvisi urgenti vengono evidenziati.</div>';
+}
+function v15OpenChildren(){
+  const list=(state.v15.children||[]).map(c=>'<div class="v15-row"><div class="ic">🧒</div><div><b>'+esc(c.name)+'</b><span>'+esc(v15CampusName(c.campus))+' · '+esc((state.v15.sections.find(s=>s.id===c.section)||{}).stage||'')+' · '+esc(c.age)+'</span></div><button class="v15-badge" onclick="v15OpenChild(\''+escAttr(c.id)+'\')">Apri</button></div>').join('');
+  document.getElementById('v8ModalContent').innerHTML=stepHeader(1,1,'Schede bambino','Ogni bambino ha una scheda personale completa.')+'<div class="v15-list">'+list+'</div><div class="v15-info">Contratto, registrazione genitori/tutori, privacy foto e video, servizi, scadenziario e situazione amministrativa possono vivere nella stessa scheda.</div>';
+  openModal('v8Modal');
+}
+function v15OpenChild(id){
+  const c=state.v15.children.find(x=>x.id===id);if(!c)return;
+  const s=state.v15.sections.find(x=>x.id===c.section);
+  document.getElementById('v8ModalContent').innerHTML=stepHeader(1,1,c.name,v15CampusName(c.campus)+' · '+(s?.stage||'')+' · '+c.age)+
+  '<div class="v15-list">'+
+    '<div class="v15-row"><div class="ic">📄</div><div><b>Contratto</b><span>'+esc(c.contract)+'</span></div><span class="v15-badge">OK</span></div>'+
+    '<div class="v15-row"><div class="ic">👨‍👩‍👧</div><div><b>Genitori / tutori</b><span>'+esc(c.parents)+'</span></div><span class="v15-badge">Registrati</span></div>'+
+    '<div class="v15-row"><div class="ic">📷</div><div><b>Privacy foto</b><span>'+esc(c.photo)+'</span></div><span class="v15-badge '+(c.photo.includes('aggiornare')?'warn':'')+'">Foto</span></div>'+
+    '<div class="v15-row"><div class="ic">🎥</div><div><b>Privacy video</b><span>'+esc(c.video)+'</span></div><span class="v15-badge">Video</span></div>'+
+    '<div class="v15-row"><div class="ic">📅</div><div><b>Scadenziario</b><span>'+esc(c.deadline)+'</span></div><span class="v15-badge warn">Prossima</span></div>'+
+    '<div class="v15-row"><div class="ic">€</div><div><b>Situazione pagamenti</b><span>'+esc(c.payment)+'</span></div><span class="v15-badge '+(c.payment==='Insoluto'?'bad':c.payment==='In scadenza'?'warn':'')+'">'+esc(c.payment)+'</span></div>'+
+  '</div><button class="btn ghost full" style="margin-top:12px" onclick="v15OpenChildren()">← Torna ai bambini</button>';
+}
+function v15OpenRoles(){
+  const rows=state.v15.roles.map((r,i)=>'<div class="v15-role"><div class="ic">'+esc(r.icon)+'</div><div><b>'+esc(r.name)+'</b><span>'+esc(r.desc)+'</span></div><button onclick="v15PreviewRole('+i+')">Anteprima</button></div>').join('');
+  document.getElementById('v8ModalContent').innerHTML=stepHeader(1,1,'Ruoli personalizzabili','Non solo Direzione, famiglia e insegnanti: ogni figura può avere dashboard e permessi propri.')+'<div class="v15-rolegrid">'+rows+'</div><div class="v15-info">È possibile aggiungere altri profili in futuro senza cambiare il concetto dell’app: ogni ruolo vede solo ciò che gli serve.</div>';
+  openModal('v8Modal');
+}
+function v15PreviewRole(i){
+  const r=state.v15.roles[i];if(!r)return;
+  const examples={
+    'Direzione':['Visione entrambe le sedi','Contabilità e insoluti','Comunicazioni e prese visione','Gestione contenuti'],
+    'Team / Segreteria':['Schede bambini','Documenti e contratti','Scadenze','Pagamenti autorizzati'],
+    'Insegnante':['Presenze','Attività del giorno','Foto/video','Diario del pranzo'],
+    'Famiglia':['Oggi del bambino','Comunicazioni personali','Scadenze pagamenti','Documenti e autorizzazioni'],
+    'Cuoco':['Menu del giorno','Diete e allergie necessarie','Numero pasti per sede','Nessun accesso a dati non pertinenti'],
+    'Insegnante esterno':['Laboratorio assegnato','Sezione e partecipanti autorizzati','Obiettivo attività','Caricamento esito/foto se consentito']
+  };
+  document.getElementById('v8ModalContent').innerHTML=stepHeader(1,1,r.icon+' '+r.name,'Esempio di dashboard dedicata a questo ruolo.')+'<div class="v15-list">'+(examples[r.name]||[]).map(x=>'<div class="v15-row"><div class="ic">✓</div><div><b>'+esc(x)+'</b><span>Visibile in base ai permessi assegnati.</span></div></div>').join('')+'</div><button class="btn ghost full" style="margin-top:12px" onclick="v15OpenRoles()">← Torna ai ruoli</button>';
+}
+function v15OpenSection(id){
+  const s=state.v15.sections.find(x=>x.id===id);if(!s)return;
+  document.getElementById('v8ModalContent').innerHTML=stepHeader(1,1,s.stage+' · '+s.name,v15CampusName(s.campus)+' · '+s.kids+' bambini')+
+  '<div class="v15-grid"><div class="v15-card peach"><div class="ic">✨</div><div><b>Attività del giorno</b><span>Titolo, descrizione e partecipanti.</span></div></div><div class="v15-card blue"><div class="ic">🎯</div><div><b>Obiettivo laboratorio</b><span>Obiettivo educativo visibile alla famiglia.</span></div></div><div class="v15-card lilac"><div class="ic">📷</div><div><b>Foto e video</b><span>Caricamento collegato alle autorizzazioni.</span></div></div><div class="v15-card warn"><div class="ic">🍽️</div><div><b>Diario del pranzo</b><span>Compilazione rapida per bambino.</span></div></div></div>';
+  openModal('v8Modal');
+}
+function v15OpenPackages(){
+  const a=state.v15.accounting;
+  document.getElementById('v8ModalContent').innerHTML=stepHeader(1,1,'Pacchetti quota scolastica','Esempi configurabili per la scuola.')+'<div class="v15-list">'+a.packages.map(p=>'<div class="v15-row"><div class="ic">📦</div><div><b>'+esc(p.name)+'</b><span>'+esc(p.amount)+' · '+p.active+' bambini</span></div><span class="v15-badge">Attivo</span></div>').join('')+'</div>';
+  openModal('v8Modal');
+}
+function v15OpenExtras(){
+  const a=state.v15.accounting;
+  document.getElementById('v8ModalContent').innerHTML=stepHeader(1,1,'Servizi aggiuntivi','Ogni servizio può avere costo, durata e destinatari propri.')+'<div class="v15-list">'+a.extras.map(p=>'<div class="v15-row"><div class="ic">➕</div><div><b>'+esc(p.name)+'</b><span>'+esc(p.amount)+' · '+p.active+' adesioni</span></div><span class="v15-badge">Attivo</span></div>').join('')+'</div>';
+  openModal('v8Modal');
+}
+function v15OpenDeadlines(){
+  document.getElementById('v8ModalContent').innerHTML=stepHeader(1,1,'Scadenze','Economiche e documentali nello stesso scadenziario.')+'<div class="v15-list"><div class="v15-row"><div class="ic">€</div><div><b>Quota ottobre</b><span>18 famiglie · 15 ottobre</span></div><span class="v15-badge warn">Prossima</span></div><div class="v15-row"><div class="ic">📷</div><div><b>Privacy foto/video</b><span>2 autorizzazioni da aggiornare</span></div><span class="v15-badge warn">Da vedere</span></div><div class="v15-row"><div class="ic">📄</div><div><b>Contratti</b><span>2 documenti da verificare entro fine mese</span></div><span class="v15-badge">Futuro</span></div></div>';
+  openModal('v8Modal');
+}
+function v15OpenOverdue(){
+  document.getElementById('v8ModalContent').innerHTML=stepHeader(1,1,'Insoluti','Posizioni da gestire dalla Direzione o dal team autorizzato.')+'<div class="v15-row"><div class="ic">!</div><div><b>Famiglia Greco</b><span>Servizio mensa · € 200 · scadenza 10 settembre</span></div><span class="v15-badge bad">Insoluto</span></div><div class="v15-actions" style="margin-top:10px"><button class="btn soft" onclick="toast(\'Promemoria simulato inviato\')">Invia promemoria</button><button class="btn primary" onclick="toast(\'Pagamento simulato registrato\')">Registra pagamento</button></div>';
+  openModal('v8Modal');
+}
+function v15OpenNewCommunication(){
+  document.getElementById('v8ModalContent').innerHTML=stepHeader(1,1,'Nuova comunicazione','Scegli esattamente chi deve riceverla.')+
+  '<div class="field"><div class="label">Titolo</div><input id="v15CommTitle" class="input" placeholder="Es. Chiusura anticipata"></div>'+
+  '<div class="field"><div class="label">Destinatari</div><select id="v15CommTarget" class="select"><option>Tutta la scuola</option><option>Solo Caltanissetta</option><option>Solo San Cataldo</option><option>Servizio mensa</option><option>Sezione lattanti</option><option>Sezione primavera</option><option>Sezione prima infanzia</option><option>Sezione seconda infanzia</option><option>Sezione terza infanzia</option><option>Singola famiglia / persona</option></select></div>'+
+  '<div class="field"><div class="label">Messaggio</div><textarea id="v15CommBody" class="textarea"></textarea></div>'+
+  '<label class="checkline"><input id="v15CommUrgent" type="checkbox"> Avviso urgente</label>'+
+  '<label class="checkline"><input id="v15CommAck" type="checkbox" checked> Richiedi presa visione</label>'+
+  '<button class="btn primary full" style="margin-top:12px" onclick="v15SaveCommunication()">Pubblica comunicazione</button>';
+  openModal('v8Modal');
+}
+function v15SaveCommunication(){
+  const title=document.getElementById('v15CommTitle').value.trim();if(!title){toast('Inserisci il titolo');return}
+  const target=document.getElementById('v15CommTarget').value;
+  state.v15.communications.unshift({id:'v15c_'+Date.now(),title,target,urgent:document.getElementById('v15CommUrgent').checked,ack:document.getElementById('v15CommAck').checked,read:'0 destinatari'});
+  persist();closeModal('v8Modal');render();toast('Comunicazione demo pubblicata');
+}
+
+const v15SetupNavBase=setupNav;
+setupNav=function(){
+  if(role!=='director')return v15SetupNavBase();
+  const items=[['home','☀️','Oggi'],['classes','🏫','Sedi'],['payments','💳','Contabilità'],['messages','📣','Comunic.'],['profile','✏️','Contenuti']];
+  const nav=document.getElementById('bottomNav');nav.style.gridTemplateColumns='repeat(5,1fr)';
+  nav.innerHTML=items.map(it=>'<button class="nav '+(page===it[0]?'active':'')+'" data-page="'+it[0]+'"><span class="i">'+it[1]+'</span>'+it[2]+'</button>').join('');
+  nav.querySelectorAll('.nav').forEach(b=>b.onclick=()=>go(b.dataset.page));
+};
+const v15RenderDirectorBase=renderDirector;
+renderDirector=function(){
+  if(page==='home')return v15DirectorDashboard();
+  if(page==='classes')return v15DirectorClasses();
+  if(page==='payments')return v15AccountingPage();
+  if(page==='messages')return v15MessagesPage();
+  return v15RenderDirectorBase();
+};
+const v15RenderParentBase=renderParent;
+renderParent=function(){const out=v15RenderParentBase();return page==='home'?'<div class="v15-info" style="margin:0 0 10px">🏫 Sede Caltanissetta · Sezione prima infanzia</div>'+out:out};
+const v15RenderTeacherBase=renderTeacher;
+renderTeacher=function(){const out=v15RenderTeacherBase();return page==='home'?'<div class="v15-info" style="margin:0 0 10px">🏫 Sede Caltanissetta · Sezione Volpini</div>'+out:out};
+
+document.title='Kinderopolis 1.5 · Demo Vera';
+setupHeader();setupNav();render();
+</script>
